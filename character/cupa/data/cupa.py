@@ -1,4 +1,4 @@
-from data import character as char
+from core import character as char
 
 cupa = char.Character(
     name = "Cupa",

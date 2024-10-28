@@ -3,6 +3,8 @@ from dataclasses import dataclass
 @dataclass
 class Character:
     name: str|None = None
+    description: str|None = None
+    thoughts:str|None = None
     spriteFolder:list|None = None
     outfit: list|None = None
     states: list|None = None
