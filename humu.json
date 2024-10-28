@@ -17,7 +17,8 @@
           "content": "Hmm?"
         },
         {
-          "type": "narration",
+          "type": "dialogue",
+          "speaker": "Narrator",
           "content": "The girl standing before you was strange. She looks like a human wearing a creeper hoodie, is she lost?"
         },
         {
@@ -76,9 +77,13 @@
           "type": "dialogue",
           "speaker": "???",
           "content": "Is it a big deal for a creeper to look like a chick?"
+        },
+        {
+          "type": "transition",
+          "action": "jump",
+          "label": "who"
         }
-      ],
-      "next": "who"
+      ]
     },
     "who": {
       "actions": [
@@ -144,18 +149,18 @@
           "value": 3,
           "actions": [
             {
-              "type": "script",
+              "type": "show_sprite",
               "action": "show",
               "sprite": "cupa/default/angry.png"
             },
             {
-              "type": "script",
+              "type": "dialogue",
               "action": "say",
               "label": "Cupa",
               "content": "It's Cupa, by the way, ugh... The nerve..."
             },
             {
-              "type": "script",
+              "type": "transition",
               "action": "jump",
               "label": "gunpowder"
             }
@@ -187,9 +192,13 @@
           "type": "dialogue",
           "speaker": "Player",
           "content": "I mean... I can lend you some..."
+        },
+        {
+          "type": "transition",
+          "action": "jump",
+          "label": "engarde"
         }
-      ],
-      "next": "engarde"
+      ]
     },
     "no": {
       "actions": [
@@ -202,9 +211,13 @@
           "type": "dialogue",
           "speaker": "Player",
           "content": "I mean..."
+        },
+        {
+          "type": "transition",
+          "action": "jump",
+          "label": "engarde"
         }
-      ],
-      "next": "engarde"
+      ]
     },
     "engarde": {
       "actions": [
@@ -223,40 +236,13 @@
           "content": "You're not on hardcore, right?"
         },
         {
-          "type": "get_gamemode",
-          "variable": "gamemode"
-        },
-        {
           "type": "modify_variable",
           "variable": "gamemode",
           "operation": "set",
           "value": {
-            "type": "script",
+            "type": "get_gamemode",
             "action": "get_gamemode"
           }
-        },
-        {
-          "type": "show_sprite",
-          "sprite": "cupa/default/scared.png"
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Cupa",
-          "content": "What the hell?!"
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Cupa",
-          "content": "You're not supposed to play this mod on Hardcore!"
-        },
-        {
-          "type": "show_sprite",
-          "sprite": "cupa/default/angry.png"
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Cupa",
-          "content": "Screw it, I'm sending you back to World Creation, the hard way!"
         },
         {
           "type": "conditional",
@@ -265,29 +251,29 @@
           "value": "hardcore",
           "actions": [
             {
-              "type": "script",
+              "type": "show_sprite",
               "action": "show",
               "sprite": "cupa/default/scared.png"
             },
             {
-              "type": "script",
+              "type": "dialogue",
               "action": "say",
               "label": "Cupa",
               "content": "What the hell?!"
             },
             {
-              "type": "script",
+              "type": "dialogue",
               "action": "say",
               "label": "Cupa",
               "content": "You're not supposed to play this mod on Hardcore!"
             },
             {
-              "type": "script",
+              "type": "show_sprite",
               "action": "show",
               "sprite": "cupa/default/angry.png"
             },
             {
-              "type": "script",
+              "type": "dialogue",
               "action": "say",
               "label": "Cupa",
               "content": "Screw it, I'm sending you back to World Creation, the hard way!"

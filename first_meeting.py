@@ -93,11 +93,11 @@ def firstMeeting():
     vn.say(c,"You're not on hardcore, right?")
     vn.modVar("gamemode",vn.getGamemode())
     vn.condSame("gamemode","hardcore",[
-        vn.show(c,"scared"),
-        vn.say(c,"What the hell?!"),
-        vn.say(c,"You're not supposed to play this mod on Hardcore!"),
-        vn.show(c,"angry"),
-        vn.say(c,"Screw it, I'm sending you back to World Creation, the hard way!")
+        vn.show(c,"scared", True),
+        vn.say(c,"What the hell?!", True),
+        vn.say(c,"You're not supposed to play this mod on Hardcore!",True),
+        vn.show(c,"angry",True),
+        vn.say(c,"Screw it, I'm sending you back to World Creation, the hard way!",True)
     ])
     vn.say(p,"What does that have anything to do with us fighting?")
     vn.say(c,"It means I respawn after death")

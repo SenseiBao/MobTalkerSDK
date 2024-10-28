@@ -29,7 +29,7 @@ class Dialogue():
             name = character
         print("Compiling: "+content)
         result = {
-            "type":"script",
+            "type":"dialogue",
             "action":"say",
             "label":name,
             "content":content
@@ -43,7 +43,7 @@ class Dialogue():
             sprite = character.id+"/"+character.outfit+"/"+sprite+".png"
             print("Compiling: "+sprite)
             result = {
-                "type":"script",
+                "type":"show_sprite",
                 "action":"show",
                 "sprite":sprite
             }
@@ -57,7 +57,7 @@ class Dialogue():
     def choice(self,choice: dict):
         print(choice)
         result = {
-            "type":"script",
+            "type":"conditional",
             "action":"choice",
             "choice":choice
         }
@@ -78,7 +78,7 @@ class Dialogue():
     def jumpTo(self,labelName:str,transition=False):
         print("Compiling:" + labelName)
         result = {
-            "type":"script",
+            "type":"transition",
             "action":"jump",
             "label": labelName
         }
@@ -89,7 +89,7 @@ class Dialogue():
     def finish(self):
         print("Compiling A Finish Line")
         result = {
-            "type":"action",
+            "type":"finish_dialogue",
             "action": "finish_dialogue"
         }
         self.dialogueDict.append(result)
@@ -111,7 +111,7 @@ class Dialogue():
     def addVar(self,varName:str, addAmount:int):
         print("Compiling: "+varName)
         result = {
-            "type":"script",
+            "type":"modify_variable",
             "action": "increment_var", 
             "var": varName, 
             "amount": addAmount
@@ -122,7 +122,7 @@ class Dialogue():
     def subVar(self,varName:str, subAmount:int):
         print("Compiling: "+varName)
         result = {
-            "type":"script",
+            "type":"modify_variable",
             "action": "subtract_var", 
             "var": varName, 
             "amount": subAmount
@@ -133,7 +133,7 @@ class Dialogue():
     def modVar(self,varName:str, value:any):
         print("Compiling: "+varName)
         result = {
-            "type":"script",
+            "type":"modify_variable",
             "action": "modify_var", 
             "var": varName, 
             "value": value
@@ -143,7 +143,7 @@ class Dialogue():
     def condSame(self,varName: str, equalValue, actions):
         print("Compiling: "+varName)
         result = {
-            "type":"script",
+            "type":"conditional",
             "action":"conditional",
             "condition": "equal",
             "var": varName,
@@ -156,7 +156,7 @@ class Dialogue():
     def condNotSame(self,varName: str, equalValue, actions: list):
         print("Compiling: "+varName)
         result = {
-            "type":"script",
+            "type":"conditional",
             "action":"conditional",
             "condition": "not_equal",
             "var": varName,
@@ -169,7 +169,7 @@ class Dialogue():
     def condLessThan(self,varName:str, lessThanValue, actions: list):
         print("Compiling: "+varName)
         result = {
-            "type":"script",
+            "type":"conditional",
             "action":"conditional",
             "condition": "less_than",
             "var": varName,
@@ -182,7 +182,7 @@ class Dialogue():
     def condMoreThan(self,varName:str, moreThanValue, actions: list):  
         print("Compiling: "+varName)
         result = {
-            "type":"script",
+            "type":"conditional",
             "action":"conditional",
             "condition": "greater_than",
             "var": varName,
@@ -194,7 +194,7 @@ class Dialogue():
 
     def givePlayer(self,itemId:str,amount:int):
         result = {
-            "type":"script",
+            "type":"give_player",
             "action":"give_player",
             "item_id":itemId,
             "amount":amount
@@ -202,17 +202,19 @@ class Dialogue():
         self.dialogueDict.append(result)
         return result
 
-    def getGamemode(self):
+    def getGamemode(self,transition = True):
         result = {
-            "type":"script",
+            "type":"get_gamemode",
             "action":"get_gamemode"
         }
-        self.dialogueDict.append(result)
+        if(transition==False):
+            self.dialogueDict.append(result)
+        
         return result
 
     def customCommand(self,minecraftCommmand:str):
         result = {
-            "type":"script",
+            "type":"custom",
             "action":"custom_commmand",
             "command":minecraftCommmand
         }

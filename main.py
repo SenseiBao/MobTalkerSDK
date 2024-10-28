@@ -33,7 +33,8 @@ def create_action_dict(script_action: dict[str, any]) -> list[dict[str, any]|Non
     elif action_type == "say":
         if script_action["label"] == "":
             return {
-                "type": "narration",
+                "type": "dialogue",
+                "speaker": "Narrator",
                 "content": script_action["content"]
             }
         return {
@@ -71,8 +72,9 @@ def create_action_dict(script_action: dict[str, any]) -> list[dict[str, any]|Non
         }
     elif action_type == "jump":
         return {
-            "type": "jump",
-            "target": script_action["label"]
+            "type": "transition",
+            "action": "jump",
+            "label": script_action["label"]
         }
     elif action_type == "give_player":
         return {
@@ -103,8 +105,8 @@ def process_script_action(action: dict[str, any], current_state: str, fsm: dict[
 
     if action_dict["type"] == "choice":
         fsm["states"][current_state]["choices"] = action_dict["options"]
-    elif action_dict["type"] == "jump":
-        fsm["states"][current_state]["next"] = action_dict["target"]
+    # elif action_dict["type"] == "jump":
+    #     fsm["states"][current_state]["next"] = action_dict["target"]
     else:
         if "actions" not in fsm["states"][current_state]:
             fsm["states"][current_state]["actions"] = []
