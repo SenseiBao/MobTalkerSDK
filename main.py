@@ -1,106 +1,147 @@
 import json
-import vn_dialogue as vn
-import cupa
 from first_meeting import firstMeeting
+import os
 
-def compile_actions(actions):
-    compiled_actions = []
-    for action in actions:
-        if isinstance(action, dict):
-            if action.get("action") == "say":
-                compiled_action = {
-                    "type": "dialogue",
-                    "speaker": action.get("label"),
-                    "text": action.get("content")
-                }
-                if action.get("label") is None:
-                    compiled_action["type"] = "narration"
-                compiled_actions.append(compiled_action)
-            
-            elif action.get("action") == "show":
-                compiled_actions.append({
-                    "type": "show",
-                    "sprite": action.get("sprite")
-                })
-            
-            elif action.get("action") == "increment_var":
-                compiled_actions.append({
-                    "type": "var_modify",
-                    "var": action.get("var"),
-                    "operation": "add",
-                    "value": action.get("amount")
-                })
-            
-            elif action.get("action") == "subtract_var":
-                compiled_actions.append({
-                    "type": "var_modify",
-                    "var": action.get("var"),
-                    "operation": "subtract",
-                    "value": action.get("amount")
-                })
-            
-            elif action.get("action") == "modify_var":
-                compiled_actions.append({
-                    "type": "var_modify",
-                    "var": action.get("var"),
-                    "operation": "set",
-                    "value": action.get("value")
-                })
-            
-            elif action.get("minecraft") == "giveItem":
-                compiled_actions.append({
-                    "type": "game_action",
-                    "action": "give_item",
-                    "item": action.get("id"),
-                    "amount": action.get("amount")
-                })
-
-    return compiled_actions
-
-def compile_conditions(condition):
-    if not isinstance(condition, dict):
-        return None
-    
-    compiled_condition = {
-        "type": "",
-        "var": condition.get("var"),
-        "value": condition.get("value"),
-        "actions": compile_actions(condition.get("actions", []))
+def initialize_fsm() -> dict[str, any]:
+    """Initialize the basic FSM structure."""
+    return {
+        "initial_state": "start",
+        "variables": {},
+        "states": {}
     }
-    
-    if condition.get("condition") == "equal":
-        compiled_condition["type"] = "equals"
-    elif condition.get("condition") == "not_equal":
-        compiled_condition["type"] = "not_equals"
-    elif condition.get("condition") == "less_than":
-        compiled_condition["type"] = "less_than"
-    elif condition.get("condition") == "greater_than":
-        compiled_condition["type"] = "greater_than"
+
+def process_meta_action(action: dict[str, str], fsm: dict[str, any]) -> None:
+    """Process meta actions and update the FSM accordingly."""
+    if action["action"] == "initialize":
+        pass  # FSM is already initialized
+    elif action["action"] == "create_var":
+        fsm["variables"][action["var"]] =fsm[action["init"]]
         
-    return compiled_condition
+    elif action["action"] == "label":
+        if action["label"] not in fsm["states"]:
+            fsm["states"][action["label"]] = {"actions": []}
+
+def create_action_dict(script_action: dict[str, any]) -> list[dict[str, any]|None]:
+    """Convert a script action into the FSM action format."""
+    action_type = script_action["action"]
+    
+    if action_type == "show":
+        return {
+            "type": "show_sprite",
+            "sprite": script_action["sprite"]
+        }
+    elif action_type == "say":
+        if script_action["label"] == "":
+            return {
+                "type": "narration",
+                "content": script_action["content"]
+            }
+        return {
+            "type": "dialogue",
+            "speaker": script_action["label"],
+            "content": script_action["content"]
+        }
+    elif action_type == "choice":
+        return {
+            "type": "choice",
+            "options": script_action["choice"]
+        }
+    elif action_type == "increment_var":
+        return {
+            "type": "modify_variable",
+            "variable": script_action["var"],
+            "operation": "increment",
+            "value": script_action["amount"]
+        }
+    elif action_type == "modify_var":
+        return {
+            "type": "modify_variable",
+            "variable": script_action["var"],
+            "operation": "set",
+            "value": script_action["value"]
+        }
+    elif action_type == "jump":
+        return {
+            "type": "jump",
+            "target": script_action["label"]
+        }
+    elif action_type == "give_player":
+        return {
+            "type": "give_item",
+            "item": script_action["item_id"],
+            "amount": script_action["amount"]
+        }
+    elif action_type == "get_gamemode":
+        return {
+            "type": "get_gamemode",
+            "variable": "gamemode"
+        }
+    elif action_type == "finish_dialogue":
+        return {
+            "type": "finish_dialogue"
+        }
+    return None
+
+def process_script_action(action: dict[str, any], current_state: str, fsm: dict[str, any]) -> None:
+    """Process script actions and update the FSM accordingly."""
+    if "type" in action and action["type"] == "meta":
+        process_meta_action(action, fsm)
+        return
+
+    action_dict = create_action_dict(action)
+    if action_dict is None:
+        return
+
+    if action_dict["type"] == "choice":
+        fsm["states"][current_state]["choices"] = action_dict["options"]
+    elif action_dict["type"] == "jump":
+        fsm["states"][current_state]["next"] = action_dict["target"]
+    else:
+        if "actions" not in fsm["states"][current_state]:
+            fsm["states"][current_state]["actions"] = []
+        fsm["states"][current_state]["actions"].append(action_dict)
+
+def convert_vn_to_fsm(vn_script: list[dict[str, any]]) -> dict[str, any]:
+    print("""Convert VN script to FSM format.""")
+    fsm = initialize_fsm()
+    current_state = None
+
+    for action in vn_script:
+        if "type" in action and action["type"] == "meta" and action["action"] == "label":
+            current_state = action["label"]
+        if current_state is not None:
+            process_script_action(action, current_state, fsm)
+
+    return fsm
+
 
 def compile_vn_to_fsm():
     # First, run the VN script to gather all states and transitions
-    current_state = {
-        "label": "start", 
-        "actions": [], 
-        "transitions": {}
-    }
-    states = {}
-    variables = []
     
     # Execute the firstMeeting function to gather all the commands
     script_actions = firstMeeting()
     print(script_actions)
+    return convert_vn_to_fsm(script_actions)
+    
     
 def main():
     
-        print("Compiling VN script to FSM...")
-        compile_vn_to_fsm()
+    print("Compiling VN script to FSM...")
+    fsm = compile_vn_to_fsm()
     #     save_fsm_to_file(fsm)
     #     print(f"Successfully compiled and saved FSM to vn_script.json")
     # except Exception as e:
     #     print(f"Error during compilation: {str(e)}")
+    try:
+        
+        # Write the FSM to a JSON file
+        with open("humu.json", 'w', encoding='utf-8') as f:
+            json.dump(fsm, f, indent=2, ensure_ascii=False)
+        
+        print(f"Done Bitch")
+        
+    except Exception as e:
+        print(f"Error processing the file: {e}")
 
 if __name__ == "__main__":
     main()

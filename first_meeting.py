@@ -15,10 +15,11 @@ def firstMeeting():
         traits = None
     )
     p = "Player"
-    vn.initialize()
-    vn.setVar("aff")
-    vn.setVar("gamemode")
     
+    vn.setVar("aff",0)
+    vn.setVar("gamemode","None for now")
+
+    vn.initialize()
     vn.start()
     vn.label("start")
     vn.show(c,"normal")

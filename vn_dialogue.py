@@ -60,6 +60,7 @@ class Dialogue():
         print("Compiling: "+labelName)
         self.dialogueDict.append( {
             "type":"meta",
+            "action" : "label",
             "label":labelName
         })
 
@@ -79,12 +80,13 @@ class Dialogue():
         })
         
 
-    def setVar(self,varName:str):
+    def setVar(self,varName:str,init:any):
         print("Compiling: "+varName)
         self.dialogueDict.append({
             "type":"meta",
             "action": "create_var", 
-            "var": varName
+            "var": varName,
+            "init":init
         })
 
     # You can use (-) instead of subVar
@@ -121,6 +123,7 @@ class Dialogue():
         print("Compiling: "+varName)
         self.dialogueDict.append({
             "type":"script",
+            "action":"conditional",
             "condition": "equal",
             "var": varName,
             "value": equalValue,
@@ -130,6 +133,7 @@ class Dialogue():
     def condNotSame(self,varName: str, equalValue, actions: list):
         self.dialogueDict.append({
             "type":"script",
+            "action":"conditional",
             "condition": "not_equal",
             "var": varName,
             "value": equalValue,
@@ -139,6 +143,7 @@ class Dialogue():
     def condLessThan(self,varName:str, lessThanValue, actions: list):
         self.dialogueDict.append({
             "type":"script",
+            "action":"conditional",
             "condition": "less_than",
             "var": varName,
             "value": lessThanValue,
@@ -148,6 +153,7 @@ class Dialogue():
     def condMoreThan(self,varName:str, moreThanValue, actions: list):  
         self.dialogueDict.append( {
             "type":"script",
+            "action":"conditional",
             "condition": "greater_than",
             "var": varName,
             "value": moreThanValue,
