@@ -16,9 +16,10 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 
 ## TO DO
 
-- [ ] Build A Dummy Script For Testing
+- [x] Build A Dummy Script For Testing
 - [ ] Build A Bunch of Basic Commands
 - [ ] Build The Compiler
+- [ ] Build The Terminal VN Game Engine
 
 ## Features
 
