@@ -66,9 +66,9 @@ def firstMeeting():
 
     vn.label("ask_item")
     vn.condMoreThan("aff",3,[
-        vn.show(c,"angry"),
-        vn.say(c,"It's Cupa, by the way, ugh... The nerve..."),
-        vn.jumpTo("gunpowder")
+        vn.show(c,"angry",True),
+        vn.say(c,"It's Cupa, by the way, ugh... The nerve...",True),
+        vn.jumpTo("gunpowder",True)
     ])
     vn.show(c,"angry")
     vn.say(c,"I don't know, do you got diamonds on you?")

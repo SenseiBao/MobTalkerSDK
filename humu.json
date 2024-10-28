@@ -1,6 +1,9 @@
 {
   "initial_state": "start",
-  "variables": {},
+  "variables": {
+    "aff": 0,
+    "gamemode": "None for now"
+  },
   "states": {
     "start": {
       "actions": [
@@ -135,13 +138,28 @@
     "ask_item": {
       "actions": [
         {
-          "type": "show_sprite",
-          "sprite": "cupa/default/angry.png"
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Cupa",
-          "content": "It's Cupa, by the way, ugh... The nerve..."
+          "type": "conditional",
+          "condition": "greater_than",
+          "variable": "aff",
+          "value": 3,
+          "actions": [
+            {
+              "type": "script",
+              "action": "show",
+              "sprite": "cupa/default/angry.png"
+            },
+            {
+              "type": "script",
+              "action": "say",
+              "label": "Cupa",
+              "content": "It's Cupa, by the way, ugh... The nerve..."
+            },
+            {
+              "type": "script",
+              "action": "jump",
+              "label": "gunpowder"
+            }
+          ]
         },
         {
           "type": "show_sprite",
@@ -153,7 +171,6 @@
           "content": "I don't know, do you got diamonds on you?"
         }
       ],
-      "next": "gunpowder",
       "choices": {
         "yes": "Yes...",
         "no": "No..."
@@ -213,7 +230,10 @@
           "type": "modify_variable",
           "variable": "gamemode",
           "operation": "set",
-          "value": null
+          "value": {
+            "type": "script",
+            "action": "get_gamemode"
+          }
         },
         {
           "type": "show_sprite",
@@ -237,6 +257,42 @@
           "type": "dialogue",
           "speaker": "Cupa",
           "content": "Screw it, I'm sending you back to World Creation, the hard way!"
+        },
+        {
+          "type": "conditional",
+          "condition": "equal",
+          "variable": "gamemode",
+          "value": "hardcore",
+          "actions": [
+            {
+              "type": "script",
+              "action": "show",
+              "sprite": "cupa/default/scared.png"
+            },
+            {
+              "type": "script",
+              "action": "say",
+              "label": "Cupa",
+              "content": "What the hell?!"
+            },
+            {
+              "type": "script",
+              "action": "say",
+              "label": "Cupa",
+              "content": "You're not supposed to play this mod on Hardcore!"
+            },
+            {
+              "type": "script",
+              "action": "show",
+              "sprite": "cupa/default/angry.png"
+            },
+            {
+              "type": "script",
+              "action": "say",
+              "label": "Cupa",
+              "content": "Screw it, I'm sending you back to World Creation, the hard way!"
+            }
+          ]
         },
         {
           "type": "dialogue",

@@ -15,8 +15,8 @@ def process_meta_action(action: dict[str, str], fsm: dict[str, any]) -> None:
     if action["action"] == "initialize":
         pass  # FSM is already initialized
     elif action["action"] == "create_var":
-        fsm["variables"][action["var"]] =fsm[action["init"]]
-        
+        fsm["variables"][action["var"]] =action["init"]
+
     elif action["action"] == "label":
         if action["label"] not in fsm["states"]:
             fsm["states"][action["label"]] = {"actions": []}
@@ -46,12 +46,21 @@ def create_action_dict(script_action: dict[str, any]) -> list[dict[str, any]|Non
             "type": "choice",
             "options": script_action["choice"]
         }
+    elif action_type == "conditional":
+        return {
+            "type": "conditional",
+            "condition": script_action["condition"],
+            "variable":script_action["var"],
+            "value":script_action["value"],
+            "actions":script_action["actions"]
+        }
     elif action_type == "increment_var":
         return {
             "type": "modify_variable",
             "variable": script_action["var"],
             "operation": "increment",
-            "value": script_action["amount"]
+            "value": script_action["amount"],
+            
         }
     elif action_type == "modify_var":
         return {
@@ -107,9 +116,14 @@ def convert_vn_to_fsm(vn_script: list[dict[str, any]]) -> dict[str, any]:
     current_state = None
 
     for action in vn_script:
-        if "type" in action and action["type"] == "meta" and action["action"] == "label":
-            current_state = action["label"]
-        if current_state is not None:
+        # Process meta actions regardless of current state
+        if "type" in action and action["type"] == "meta":
+            process_meta_action(action, fsm)
+            # Update current state if it's a label action
+            if action["action"] == "label":
+                current_state = action["label"]
+        # Process other actions only if we have a current state
+        elif current_state is not None:
             process_script_action(action, current_state, fsm)
 
     return fsm
