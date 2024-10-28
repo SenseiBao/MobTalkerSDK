@@ -1,6 +1,6 @@
-from core import vn_dialogue as vn
-from core import mc_interaction as mc
-from character.cupa.data.cupa import cupa
+import vn_dialogue as vn
+# import mc_interaction as mc
+import cupa
 
 def firstMeeting():
     c = cupa
@@ -78,14 +78,14 @@ def firstMeeting():
     vn.show(c,"normal")
     vn.say(c,"Since you're asking for a fight, why don't we?")
     vn.say(c,"You're not on hardcore, right?")
-    vn.modVar("gamemode",mc.getGamemode())
-    vn.condSame("gamemode","hardcore",[
-        vn.show(c,"scared"),
-        vn.say(c,"What the hell?!"),
-        vn.say(c,"You're not supposed to play this mod on Hardcore!"),
-        vn.show(c,"angry"),
-        vn.say(c,"Screw it, I'm sending you back to World Creation, the hard way!")
-    ])
+    # vn.modVar("gamemode",mc.getGamemode())
+    # vn.condSame("gamemode","hardcore",[
+    #     vn.show(c,"scared"),
+    #     vn.say(c,"What the hell?!"),
+    #     vn.say(c,"You're not supposed to play this mod on Hardcore!"),
+    #     vn.show(c,"angry"),
+    #     vn.say(c,"Screw it, I'm sending you back to World Creation, the hard way!")
+    # ])
     vn.say(p,"What does that have anything to do with us fighting?")
     vn.say(c,"It means I respawn after death")
     vn.say(c, "Anyway, let's duke it out! I think I got a few gunpowders in my pocket~")
@@ -94,7 +94,7 @@ def firstMeeting():
     vn.label("gunpowder")
     vn.show(c,"normal")
     vn.say(c,"Hmm... You know what? You're not that bad a person")
-    mc.givePlayer("minecraft:gunpowder",6)
+    # mc.givePlayer("minecraft:gunpowder",6)
     vn.show(c,"happy")
     vn.say(c,"Pop off stranger!")
     vn.finish()

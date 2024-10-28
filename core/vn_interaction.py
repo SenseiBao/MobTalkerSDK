@@ -1,4 +1,4 @@
-from core import character as char
+from core import characterBase as char
 from core import quest 
 
 def startDialogue(scriptName : str, charList : list):
