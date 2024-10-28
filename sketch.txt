@@ -1,0 +1,14 @@
+Okay so...
+
+We got uhh...
+
+var init
+  
+
+script
+    state - inside the script
+        say - inside the state
+        show
+        background
+        mc
+        jump is here

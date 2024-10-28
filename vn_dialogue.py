@@ -1,103 +1,177 @@
 import characterBase as char
 
-def say(character,content):
-    name = ""
-    if(character is char.Character):
-        name = character.name
-    elif(character  == None):
+class Dialogue():
+
+    def __init__(self):
+        self.dialogueDict = []
+
+    def initialize(self):
+        self.dialogueDict.append({
+            "type":"meta",
+            "action":"initialize"
+        })
+    
+    def start(self):
+        self.dialogueDict.append({
+            "type":"meta",
+            "action":"start"
+        })
+
+    def say(self,character,content):
         name = ""
-    else:
-        name = character
-    print("Compiling: "+content)
-    return {
-        "action":"say",
-        "label":name,
-        "content":content
-    }
+        if isinstance(character, char.Character):
+            name = character.name
+        elif(character  == None):
+            name = ""
+        else:
+            name = character
+        print("Compiling: "+content)
 
-def show(character,sprite):
-    sprite = ""
-    if(character is char.Character):
-        sprite = character.id+"/"+character.outfit+"/"+sprite+".png"
-        print("Compiling: "+sprite)
-        return {
-            "action":"show",
-            "sprite":sprite
-        }
-    else:
-        pass
-    
-    
-def choice(choice: dict):
-    print(choice)
-    return {
-        "menu":"choice",
-        "choice":choice
-    }
+        self.dialogueDict.append({
+            "type":"script",
+            "action":"say",
+            "label":name,
+            "content":content
+        })
 
-def label(labelName:str):
-    print("Compiling: "+labelName)
-    return {
-        "label":labelName
-    }
+    def show(self,character,sprite):
+        if isinstance(character, char.Character): 
+            sprite = character.id+"/"+character.outfit+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            self.dialogueDict.append( {
+                "type":"script",
+                "action":"show",
+                "sprite":sprite
+            })
+        else:
+            pass
+        
+        
+    def choice(self,choice: dict):
+        print(choice)
+        self.dialogueDict.append({
+            "type":"script",
+            "action":"choice",
+            "choice":choice
+        })
+        
 
-def jumpTo(labelName:str):
-    print("Compiling:" + labelName)
-    return {
-        "action":"jump",
-        "label": labelName
-    }
+    def label(self,labelName:str):
+        print("Compiling: "+labelName)
+        self.dialogueDict.append( {
+            "type":"meta",
+            "label":labelName
+        })
 
-def finish():
-    print("Compiling A Finish Line")
-    return {"action": "finish_dialogue"}
+    def jumpTo(self,labelName:str):
+        print("Compiling:" + labelName)
+        self.dialogueDict.append( {
+            "type":"script",
+            "action":"jump",
+            "label": labelName
+        })
 
-def setVar(varName:str):
-    print("Compiling: "+varName)
-    return {"action": "create_var", "var": varName}
+    def finish(self):
+        print("Compiling A Finish Line")
+        self.dialogueDict.append({
+            "type":"action",
+            "action": "finish_dialogue"
+        })
+        
 
-# You can use (-) instead of subVar
-def addVar(varName:str, addAmount:int):
-    print("Compiling: "+varName)
-    return {"action": "increment_var", "var": varName, "amount": addAmount}
+    def setVar(self,varName:str):
+        print("Compiling: "+varName)
+        self.dialogueDict.append({
+            "type":"meta",
+            "action": "create_var", 
+            "var": varName
+        })
 
-def subVar(varName:str, subAmount:int):
-    print("Compiling: "+varName)
-    return {"action": "subtract_var", "var": varName, "amount": subAmount}
+    # You can use (-) instead of subVar
+    def addVar(self,varName:str, addAmount:int):
+        print("Compiling: "+varName)
 
-def modVar(varName:str, value:any):
-    print("Compiling: "+varName)
-    return {"action": "modify_var", "var": varName, "value": value}
+        self.dialogueDict.append ({
+            "type":"script",
+            "action": "increment_var", 
+            "var": varName, 
+            "amount": addAmount
+            })
 
-def condSame(varName: str, equalValue, actions: list[callable]):
-    print("Compiling: "+varName)
-    return {
-        "condition": "equal",
-        "var": varName,
-        "value": equalValue,
-        "actions": [action() for action in actions]
-    }
+    def subVar(self,varName:str, subAmount:int):
+        print("Compiling: "+varName)
+        self.dialogueDict.append({
+            "type":"script",
+            "action": "subtract_var", 
+            "var": varName, 
+            "amount": subAmount
+        })
 
-def condNotSame(varName: str, equalValue, actions: list[callable]):
-    return {
-        "condition": "not_equal",
-        "var": varName,
-        "value": equalValue,
-        "actions": [action() for action in actions]
-    }
+    def modVar(self,varName:str, value:any):
+        print("Compiling: "+varName)
 
-def condLessThan(varName:str, lessThanValue, actions: list[callable]):
-    return {
-        "condition": "less_than",
-        "var": varName,
-        "value": lessThanValue,
-        "actions": [action() for action in actions]
-    }
+        self.dialogueDict.append({
+            "type":"script",
+            "action": "modify_var", 
+            "var": varName, 
+            "value": value
+        })
 
-def condMoreThan(varName:str, moreThanValue, actions: list):  # Remove callable annotation
-    return {
-        "condition": "greater_than",
-        "var": varName,
-        "value": moreThanValue,
-        "actions": actions  
-    }
+    def condSame(self,varName: str, equalValue, actions: list):
+        print("Compiling: "+varName)
+        self.dialogueDict.append({
+            "type":"script",
+            "condition": "equal",
+            "var": varName,
+            "value": equalValue,
+            "actions": actions
+        })
+
+    def condNotSame(self,varName: str, equalValue, actions: list):
+        self.dialogueDict.append({
+            "type":"script",
+            "condition": "not_equal",
+            "var": varName,
+            "value": equalValue,
+            "actions": actions
+        })
+
+    def condLessThan(self,varName:str, lessThanValue, actions: list):
+        self.dialogueDict.append({
+            "type":"script",
+            "condition": "less_than",
+            "var": varName,
+            "value": lessThanValue,
+            "actions": actions
+        })
+
+    def condMoreThan(self,varName:str, moreThanValue, actions: list):  
+        self.dialogueDict.append( {
+            "type":"script",
+            "condition": "greater_than",
+            "var": varName,
+            "value": moreThanValue,
+            "actions": actions  
+        })
+
+    def givePlayer(self,itemId:str,amount:int):
+        self.dialogueDict.append({
+            "type":"script",
+            "action":"give_player",
+            "item_id":itemId,
+            "amount":amount
+        })
+
+    def getGamemode(self):
+        self.dialogueDict.append({
+            "type":"script",
+            "action":"get_gamemode"
+        })
+
+    def customCommand(self,minecraftCommmand:str):
+        self.dialogueDict.append({
+            "type":"script",
+            "action":"custom_commmand",
+            "command":minecraftCommmand
+        })
+

@@ -1,22 +1,34 @@
-import vn_dialogue as vn
-# import mc_interaction as mc
-import cupa
+from vn_dialogue import Dialogue
+from characterBase import Character
+
+vn = Dialogue()
 
 def firstMeeting():
-    c = cupa
+    c = Character(
+        id="cupa",
+        name = "Cupa",
+        description = "A creeper girl???",
+        thoughts= "Unknown",
+        outfit = "default",
+        states = None,
+        maxhealth = 40,
+        traits = None
+    )
     p = "Player"
+    vn.initialize()
     vn.setVar("aff")
     vn.setVar("gamemode")
-
+    
+    vn.start()
     vn.label("start")
     vn.show(c,"normal")
     vn.say("???","Hmm?")
     vn.say(None,"The girl standing before you was strange. She looks like a human wearing a creeper hoodie, is she lost?")
     vn.say("???","Oh, a player, hey")
     vn.choice({
-    "hi": "Hi?",
-    "who": "Who are you?",
-    "engarde": "EN GARDE!!!"
+        "hi": "Hi?",
+        "who": "Who are you?",
+        "engarde": "EN GARDE!!!"
     })
 
     vn.label("hi")
@@ -78,14 +90,14 @@ def firstMeeting():
     vn.show(c,"normal")
     vn.say(c,"Since you're asking for a fight, why don't we?")
     vn.say(c,"You're not on hardcore, right?")
-    # vn.modVar("gamemode",mc.getGamemode())
-    # vn.condSame("gamemode","hardcore",[
-    #     vn.show(c,"scared"),
-    #     vn.say(c,"What the hell?!"),
-    #     vn.say(c,"You're not supposed to play this mod on Hardcore!"),
-    #     vn.show(c,"angry"),
-    #     vn.say(c,"Screw it, I'm sending you back to World Creation, the hard way!")
-    # ])
+    vn.modVar("gamemode",vn.getGamemode())
+    vn.condSame("gamemode","hardcore",[
+        vn.show(c,"scared"),
+        vn.say(c,"What the hell?!"),
+        vn.say(c,"You're not supposed to play this mod on Hardcore!"),
+        vn.show(c,"angry"),
+        vn.say(c,"Screw it, I'm sending you back to World Creation, the hard way!")
+    ])
     vn.say(p,"What does that have anything to do with us fighting?")
     vn.say(c,"It means I respawn after death")
     vn.say(c, "Anyway, let's duke it out! I think I got a few gunpowders in my pocket~")
@@ -94,9 +106,11 @@ def firstMeeting():
     vn.label("gunpowder")
     vn.show(c,"normal")
     vn.say(c,"Hmm... You know what? You're not that bad a person")
-    # mc.givePlayer("minecraft:gunpowder",6)
+    vn.givePlayer("minecraft:gunpowder",6)
     vn.show(c,"happy")
     vn.say(c,"Pop off stranger!")
     vn.finish()
+
+    return vn.dialogueDict
 
 
