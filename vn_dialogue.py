@@ -99,5 +99,5 @@ def condMoreThan(varName:str, moreThanValue, actions: list):  # Remove callable 
         "condition": "greater_than",
         "var": varName,
         "value": moreThanValue,
-        "actions": actions  # Remove the list comprehension
+        "actions": actions  
     }
