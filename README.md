@@ -24,4 +24,7 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 
 ## Features
 
-(I literally just started, later aight?)
+- An Unorganized Mess To Write Script In!
+- A Compiler Hanging By Hopes and Prayers!
+- An example script to reverse engineer!
+

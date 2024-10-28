@@ -1,20 +1,20 @@
-from core import characterBase as char
-from core import quest 
+from characterBase import Character
+from quest import Quest
 
 def startDialogue(scriptName : str, charList : list):
     return None
 
-def showItem(scriptName : str, char: char.Character):
+def showItem(scriptName : str, char: Character):
     return None
 
 def startRandomDialogue(char):
     return None
 
-def commandChar(commandName:str, char: char.Character):
+def commandChar(commandName:str, char:Character):
     return None
 
-def startQuest(quest:quest.Quest):
+def startQuest(quest:Quest):
     return None
 
-def finishQuest(quest: quest.Quest):
+def finishQuest(quest: Quest):
     return None
