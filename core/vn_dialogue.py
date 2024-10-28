@@ -6,25 +6,39 @@ def say(character,content):
         name = character.name
     else:
         name = character
-    return None
+    return {
+        "action":"say",
+        "label":name,
+        "content":content
+    }
 
 def show(character,sprite):
     sprite = ""
     if(character is char.Character):
-        sprite = character.spriteFolder
+        sprite = character.spriteFolder+"/"+sprite+".png"
     else:
         sprite = sprite
-    return sprite
+    return {
+        "action":"show",
+        "sprite":sprite
+    }
     
-
-def choice(choice):
-    return None
+def choice(choice: dict):
+    return {
+        "menu":"choice",
+        "choice":choice
+    }
 
 def label(labelName:str):
-    return None
+    return {
+        "label":labelName
+    }
 
 def jumpTo(labelName:str):
-    return None
+    return {
+        "action":"jump",
+        "label": labelName
+    }
 
 def finish():
     return None
