@@ -19,11 +19,14 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 - [x] Build A Dummy Script For Testing
 - [x] Build A Bunch of Basic Commands
 - [x] Build The Compiler
-- [ ] Build The FSM Reader
-- [ ] Build The Terminal VN Game Engine
+- [x] Build The FSM Reader
+- [x] Build The Terminal VN Game Engine
 
 ## Features
 
 - An Unorganized Mess To Write Script In!
 - A Compiler Hanging By Hopes and Prayers!
 - An example script to reverse engineer!
+- A Terminal VN Engine "That Just Works" written by Claude!
+
+(No, I am not a good programmer if you're wondering)
