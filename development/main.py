@@ -34,12 +34,12 @@ def create_action_dict(script_action: dict[str, any]) -> list[dict[str, any]|Non
         if script_action["label"] == "":
             return {
                 "type": "dialogue",
-                "speaker": "Narrator",
+                "label": "Narrator",
                 "content": script_action["content"]
             }
         return {
             "type": "dialogue",
-            "speaker": script_action["label"],
+            "label": script_action["label"],
             "content": script_action["content"]
         }
     elif action_type == "choice":

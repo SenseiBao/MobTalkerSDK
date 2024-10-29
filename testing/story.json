@@ -2,7 +2,7 @@
   "initial_state": "start",
   "variables": {
     "aff": 0,
-    "gamemode": "hardcore"
+    "gamemode": "survival"
   },
   "states": {
     "start": {

@@ -4,14 +4,14 @@
 
 
 
-
-def henlo():
-    return "Henlo"
+def readFile(thefile:str):
+    return thefile
 
 def main():
     
     print("Running VN")
-    print(henlo())
+    fsm = readFile("humu.json")
+    
 
 if __name__ == "__main__":
     main()
