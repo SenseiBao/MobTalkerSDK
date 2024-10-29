@@ -57,7 +57,7 @@ class Dialogue():
     def choice(self,choice: dict):
         print(choice)
         result = {
-            "type":"conditional",
+            "type":"choice",
             "action":"choice",
             "choice":choice
         }
@@ -68,7 +68,7 @@ class Dialogue():
     def label(self,labelName:str):
         print("Compiling: "+labelName)
         result = {
-            "type":"meta",
+            "type":"label",
             "action" : "label",
             "label":labelName
         }
