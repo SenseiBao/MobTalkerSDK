@@ -114,7 +114,7 @@ class Dialogue():
             "type":"modify_variable",
             "action": "increment_var", 
             "var": varName, 
-            "amount": addAmount
+            "value": addAmount
             }
         self.dialogueDict.append (result)
         return result
@@ -125,7 +125,7 @@ class Dialogue():
             "type":"modify_variable",
             "action": "subtract_var", 
             "var": varName, 
-            "amount": subAmount
+            "value": subAmount
         }
         self.dialogueDict.append(result)
         return result
@@ -148,7 +148,7 @@ class Dialogue():
             "condition": "equal",
             "var": varName,
             "value": equalValue,
-            "actions": actions
+            "actions":actions
         }
         self.dialogueDict.append(result)
         return result

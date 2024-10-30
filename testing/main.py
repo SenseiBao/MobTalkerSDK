@@ -14,8 +14,7 @@ class VisualNovelEngine:
         self.min_id = min(game_data, key=lambda x: x.get("id", float("inf")))["id"]
         self.max_id = max(game_data, key=lambda x: x.get("id", float("-inf")))["id"]
         self.current_state = 0
-        #self.variables = game_data["variables"].copy()
-        #self.states = game_data["states"]
+        self.variables = {}
 
         # Assuming each action dict always has an "id" key
 
@@ -42,16 +41,21 @@ class VisualNovelEngine:
         print(f"\n{label}: {content}")
         input("\nPress Enter to continue...")
         self.current_state +=1
+
+    def process_command(self,value):
+        if value["type"] == "get_gamemode":
+            return "Survival"
         
     def modify_variable(self, variable: str, operation: str, value: Any):
-        if operation == "increment":
+        if isinstance(value,dict):
+
+            value = self.process_command(value)
+        if operation == "increment_var":
             self.variables[variable] += value
-        elif operation == "set":
-            # Handle special cases like get_gamemode
-            if isinstance(value, dict) and value.get("type") == "get_gamemode":
-                self.variables[variable] = self.variables.get("gamemode", "normal")
-            else:
-                self.variables[variable] = value
+        elif operation == "substract_var":
+            self.variables[variable] -= value
+        else:
+            self.variables[variable] = value
         self.current_state +=1
 
     def give_item(self, item: str, amount: int):
@@ -64,26 +68,31 @@ class VisualNovelEngine:
         
 
     def process_conditional(self, condition: dict):
+        var = self.variables[condition["var"]]
         value = condition["value"]
         end = condition["end"]
+        if value is dict:
+            value = self.process_command(value)
+        print(value)
+        print(var)
         match condition["condition"]:
             case "equal":
-                if self.aff == value:
+                if var == value:
                     self.current_state += 1
                 else:
                     self.current_state = end
             case "not_equal":
-                if self.aff != value:
+                if var != value:
                     self.current_state += 1
                 else:
                     self.current_state = end
             case "less_than":
-                if self.aff < value:
+                if var < value:
                     self.current_state += 1
                 else:
                     self.current_state = end
             case "greater_than":
-                if self.aff > value:
+                if var > value:
                     self.current_state += 1
                 else:
                     self.current_state = end
@@ -105,6 +114,16 @@ class VisualNovelEngine:
                 pass
             print("Invalid choice. Please try again.")
 
+    def create_variable(self,varName,varInit):
+        self.variables[varName] = varInit
+        self.current_state +=1
+    
+    def process_meta(self,action:dict[str,any]):
+        action_type = action["action"]
+        if action_type == "create_var":
+            self.create_variable(action["var"],action["init"])
+        else:
+            self.current_state +=1
     
 
     def process_action(self, action: dict[str, any]) -> str:
@@ -115,7 +134,7 @@ class VisualNovelEngine:
         elif action_type == "dialogue":
             self.show_dialogue(action["label"], action["content"])
         elif action_type == "modify_variable":
-            self.modify_variable(action["variable"], action["operation"], action["value"])
+            self.modify_variable( action["var"], action["action"], action["value"])
         elif action_type == "give_item":
             self.give_item(action["item"], action["amount"])
         elif action_type == "conditional":
@@ -124,13 +143,15 @@ class VisualNovelEngine:
             self.process_jump(action)
         elif action_type == "choice":
             self.show_choices(action["choice"])
+        elif action_type == "get_gamemode":
+            self.variables["gamemode"] = "hardcore"
         elif action_type == "label":
             self.current_state+=1
         elif action_type == "finish_dialogue":
-            return "END"
+            return True
         else:
             self.current_state +=1
-        return ""
+        return False
         
     
             
@@ -138,8 +159,12 @@ class VisualNovelEngine:
         print("HENLO~ \n\n")
         self.clear_screen()
         while True:
-            
-            self.process_action(self.get_dict_by_id(self.current_state))
+            action = self.get_dict_by_id(self.current_state)
+            if action["type"]=="meta":
+                self.process_meta(action)
+            else:
+                if self.process_action(action):
+                    return "END"
             
 
 def main():

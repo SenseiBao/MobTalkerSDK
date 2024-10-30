@@ -10,20 +10,27 @@ def compileVN():
     print(script_actions)
     return convertVN(script_actions)
 
-
+# Flatten Conditional Statement
 def convertVN(actions: list[dict]) -> list[dict]:
     updated_actions = []
     actionIndex = 0
     for action in actions:
-        if action["type"] != "meta":
-            action["id"] = actionIndex
+        action["id"] = actionIndex
+        if action["type"] == "conditional":
+            subactions = []
+            # actionIndex = actionIndex + len(action["actions"])
+            for subaction in action["actions"]:
+                actionIndex += 1
+                subaction["id"] = actionIndex
+                subactions.append(subaction)
+                
+            action["end"] = actionIndex+1
+            updated_actions.append(action)
+            updated_actions+=subactions
+            actionIndex +=1
+        else:
             updated_actions.append(action)
             actionIndex +=1
-            if action["type"] == "conditional":
-                for subaction in action["actions"]:
-                    subaction["id"] = actionIndex
-                    actionIndex += 1
-                action["end"] = actionIndex
             
     return updated_actions
 
