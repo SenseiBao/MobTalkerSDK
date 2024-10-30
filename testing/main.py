@@ -1,11 +1,8 @@
 import json
 import sys
-import time
-from dataclasses import dataclass
 from typing import *
 import os
 import json
-import time
 import os
 
 class VisualNovelEngine:
@@ -39,7 +36,6 @@ class VisualNovelEngine:
         
     def show_dialogue(self, label: str, content: str):
         print(f"\n{label}: {content}")
-        input("\nPress Enter to continue...")
         self.current_state +=1
 
     def process_command(self,value):
