@@ -39,8 +39,12 @@ class VisualNovelEngine:
         self.current_state +=1
 
     def process_command(self,value):
-        if value["type"] == "get_gamemode":
+        if value["action"] == "get_gamemode":
             return "Survival"
+        elif value["action"] == "custom_command":
+            return "Nothing for now"
+        else:
+            return "Nothing for now"
         
     def modify_variable(self, variable: str, operation: str, value: Any):
         if isinstance(value,dict):
@@ -139,8 +143,8 @@ class VisualNovelEngine:
             self.process_jump(action)
         elif action_type == "choice":
             self.show_choices(action["choice"])
-        elif action_type == "get_gamemode":
-            self.variables["gamemode"] = "hardcore"
+        elif action_type == "command":
+            self.process_command(action)
         elif action_type == "label":
             self.current_state+=1
         elif action_type == "finish_dialogue":

@@ -204,7 +204,7 @@ class Dialogue():
 
     def getGamemode(self,transition = True):
         result = {
-            "type":"get_gamemode",
+            "type":"command",
             "action":"get_gamemode"
         }
         if(transition==False):
@@ -214,7 +214,7 @@ class Dialogue():
 
     def customCommand(self,minecraftCommmand:str):
         result = {
-            "type":"custom",
+            "type":"command",
             "action":"custom_commmand",
             "command":minecraftCommmand
         }
