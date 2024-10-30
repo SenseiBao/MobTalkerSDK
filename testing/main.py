@@ -36,6 +36,7 @@ class VisualNovelEngine:
         
     def show_dialogue(self, label: str, content: str):
         print(f"\n{label}: {content}")
+        input()
         self.current_state +=1
 
     def process_command(self,value):
@@ -97,18 +98,17 @@ class VisualNovelEngine:
                 else:
                     self.current_state = end
     
-    def show_choices(self, choices: dict[str, str]) -> str:
+    def show_choices(self, choices: list[dict]) -> str:
         print("\nChoices:")
-        for number, (key, value) in enumerate(choices.items(), 1):
-            print(f"{number}. {value}")
+        for number, choice in enumerate(choices, 1):
+            print(f"{number}. {choice['display']}")
             
         while True:
             try:
                 choice = int(input("\nEnter your choice (number): ")) - 1
                 if 0 <= choice < len(choices):
-                    targetLabel = list(choices.keys())[choice]
-                    #print("Your choice is"+str(choice) + "and target is"+str(targetLabel))
-                    self.current_state = self.find_label_id(targetLabel)
+                    target_label = choices[choice]['label']
+                    self.current_state = self.find_label_id(target_label)
                     break
             except ValueError:
                 pass

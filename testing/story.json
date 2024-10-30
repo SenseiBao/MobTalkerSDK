@@ -59,11 +59,20 @@
     {
         "type": "choice",
         "action": "choice",
-        "choice": {
-            "hi": "Hi?",
-            "who": "Who are you?",
-            "engarde": "EN GARDE!!!"
-        },
+        "choice": [
+            {
+                "label": "hi",
+                "display": "Hi?"
+            },
+            {
+                "label": "who",
+                "display": "Who are you?"
+            },
+            {
+                "label": "engarde",
+                "display": "EN GARDE!!!"
+            }
+        ],
         "id": 9
     },
     {
@@ -167,10 +176,16 @@
     {
         "type": "choice",
         "action": "choice",
-        "choice": {
-            "introduction": "Ask her name",
-            "ask_item": "Ask for Gunpowder"
-        },
+        "choice": [
+            {
+                "label": "introduction",
+                "display": "Ask her name"
+            },
+            {
+                "label": "ask_item",
+                "display": "Ask for Gunpowder"
+            }
+        ],
         "id": 25
     },
     {
@@ -216,10 +231,16 @@
     {
         "type": "choice",
         "action": "choice",
-        "choice": {
-            "gunpowder": "Great, Nice to meet you, can we end this peacefully?",
-            "engarde": "So... since you're a creeper... does that mean we're gonna duke it out?"
-        },
+        "choice": [
+            {
+                "label": "gunpowder",
+                "display": "Great, Nice to meet you, can we end this peacefully?"
+            },
+            {
+                "label": "engarde",
+                "display": "So... since you're a creeper... does that mean we're gonna duke it out?"
+            }
+        ],
         "id": 32
     },
     {
@@ -286,10 +307,16 @@
     {
         "type": "choice",
         "action": "choice",
-        "choice": {
-            "yes": "Yes...",
-            "no": "No..."
-        },
+        "choice": [
+            {
+                "label": "yes",
+                "display": "Yes..."
+            },
+            {
+                "label": "no",
+                "display": "No..."
+            }
+        ],
         "id": 40
     },
     {
@@ -375,7 +402,7 @@
         "action": "modify_var",
         "var": "gamemode",
         "value": {
-            "type": "get_gamemode",
+            "type": "command",
             "action": "get_gamemode"
         },
         "id": 53

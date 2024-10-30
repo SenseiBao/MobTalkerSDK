@@ -59,7 +59,7 @@ class Dialogue():
         result = {
             "type":"choice",
             "action":"choice",
-            "choice":choice
+            "choice":[{"label": key, "display": value} for key, value in choice.items()]
         }
         self.dialogueDict.append(result)
         return result
