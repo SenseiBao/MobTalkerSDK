@@ -76,6 +76,10 @@ Test the branching, states, make sure stuff happen as you like
 It's a terminal, it doesn't support images. 
 (Yet, might make a simple UI Presentation after this)
 
+Anyway, the storyname.json is the end product. 
+
+What to do with the storyname.json???
+
 4. Minecraft
 
 Check out the [Mob Talker Redux](https://github.com/Iteranya/MobTalkerRedux) in my repo for the mod itself.
@@ -86,12 +90,24 @@ It's currently a framework, not a functional mod.
 
 But VN Engine is already in the mod, just check out the current mod for example implementation.
 
+You can slap in the storyname.json into the mod and it'll try to run it.
+
 5. General Purpose
 
-You might want to make your own module at `modules.py` and set some more data class in `model.py` 
+Easy way:
 
-Just reverse engineer Minecraft class
+- Wait for someone smarter than you to add compatibility to read and run the json created by this SDK.
 
-If you can't mod this SDK, you can't mod at all, sorry.
+Hard way:
+
+- Recreate 'main.py' inside the platform of your choosing. 
+- I did this in Java and embedded it into minecraft. 
+- It was the worst weekend of my life.
+
+Very Hard way:
+
+- Make your own module at `modules.py` and set some more data class in `model.py` 
+
+Just reverse engineer Minecraft class for guidance. Above that... well... Go back to the easy solution.
 
 
