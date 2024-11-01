@@ -11,3 +11,13 @@ Yeah... Another custom compiler...
 FUCK!
 
 Anyway~ Am I gonna integrate this to my VN Engine???
+
+Hmm... VN Engine Final State:
+
+- Exploration Feature (To Simulate 'Exploration' or 'Objects Of Intrigue' in Minecraft)
+- Question Feature ( To  Simulate Questing, Very Self-Explanatory)
+- Dialogue/Cutscene Feature (It's finished, sorta~)
+- Character Profile/Inventory Feature (That Sweet Menu Screen~)
+- DBMS (For keeping track of all the relevant persistent information)
+
+And somehow, turn this all into a json...
