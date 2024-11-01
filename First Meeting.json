@@ -16,6 +16,7 @@
     {
         "type": "meta",
         "action": "initialize",
+        "scriptName": "First meeting",
         "id": 2
     },
     {

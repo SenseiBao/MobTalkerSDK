@@ -1,25 +1,19 @@
-from vn_dialogue import Dialogue
-from characterBase import Character
+from characters import Cupa
+from core.dialogueModule import Dialogue
+from core.compiler import compile
 
 vn = Dialogue()
+c = Cupa
+p = "Player"
+storyName = "First Meeting"
 
-def firstMeeting():
-    c = Character(
-        id="cupa",
-        name = "Cupa",
-        description = "A creeper girl???",
-        thoughts= "Unknown",
-        outfit = "default",
-        states = None,
-        maxhealth = 40,
-        traits = None
-    )
-    p = "Player"
+def story():
+    
     
     vn.setVar("aff",0)
     vn.setVar("gamemode","None for now")
 
-    vn.initialize()
+    vn.initialize("First meeting") # Script/Scene/Dialogue/Whatever you call this's name
     vn.start()
     vn.label("start")
     vn.show(c,"normal")
@@ -115,3 +109,7 @@ def firstMeeting():
     return vn.dialogueDict
 
 
+def main():compile(storyname=storyName,script=story())
+
+if __name__ == "__main__":
+    main()

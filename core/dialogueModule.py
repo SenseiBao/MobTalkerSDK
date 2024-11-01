@@ -1,14 +1,15 @@
-import characterBase as char
+from core import characterBase as char
 
 class Dialogue():
 
     def __init__(self):
         self.dialogueDict = []
 
-    def initialize(self):
+    def initialize(self,scriptName):
         self.dialogueDict.append({
             "type":"meta",
-            "action":"initialize"
+            "action":"initialize",
+            "scriptName": scriptName
         })
     
     def start(self):
