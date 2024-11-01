@@ -1,11 +1,10 @@
 from characters import Cupa
-from core.modules import Dialogue,Minecraft
+from core.modules import VisualNovelModule
 from core.compiler import compile
 # This is the Example Script, obviously~
 
 from characters import Cupa,Andr # Import characters you've defined in characters.py
-vn = Dialogue() # Grab Any Module you like 
-mc = Minecraft() # Minecraft Module for Mob Talker mod
+vn = VisualNovelModule()
 c = Cupa 
 p = "Player" 
 storyName = "First Meeting" # This will be the name of the Json File
@@ -88,7 +87,7 @@ def story():
     vn.show(c,"normal")
     vn.say(c,"Since you're asking for a fight, why don't we?")
     vn.say(c,"You're not on hardcore, right?")
-    vn.modVar("gamemode",mc.getGamemode())# modvar just changes the variable
+    vn.modVar("gamemode",vn.getGamemode())# modvar just changes the variable
     vn.condSame("gamemode","hardcore",[ # conditional to check if "gamemode" is "hardcore"
         vn.show(c,"scared",True), # Fuck, I hate this part...
         vn.say(c,"What the hell?!",True), # So basically, you have to add 'True' for nested stuff
@@ -103,7 +102,7 @@ def story():
 
     vn.label("gunpowder")
     vn.say(c,"Hmm... You know what? You're not that bad a person")
-    mc.givePlayer("minecraft:gunpowder",6) # Minecraft specific command (might put this in another class)
+    vn.givePlayer("minecraft:gunpowder",6) # Minecraft specific command (might put this in another class)
     vn.show(c,"happy")
     vn.say(c,"Pop off stranger!")
     vn.finish() # This ends the game

@@ -83,8 +83,6 @@ What to do with the storyname.json???
 4. Minecraft
 
 Check out the [Mob Talker Redux](https://github.com/Iteranya/MobTalkerRedux) in my repo for the mod itself.
-It supports the original Dialogue() module, but not minecraft itself yet
-As of writing this I mean.
 
 It's currently a framework, not a functional mod.
 
@@ -106,8 +104,8 @@ Hard way:
 
 Very Hard way:
 
-- Make your own module at `modules.py` and set some more data class in `model.py` 
+- Make your own functions at `modules.py` and set some more data class in `model.py` 
 
-Just reverse engineer Minecraft class for guidance. Above that... well... Go back to the easy solution.
+Just reverse engineer VisualNovelModule class for guidance. Above that... well... Go back to the easy solution.
 
 

@@ -7,8 +7,7 @@ from core import model as char
 # Feel free to customize it to your system~
 
 
-class Dialogue(): # Base class, with 2 minecraft function to showcase what a custom function would look like
-
+class VisualNovelModule(): # Module Class, just add more function as you like
     def __init__(self):
         self.dialogueDict = []
 
@@ -199,10 +198,7 @@ class Dialogue(): # Base class, with 2 minecraft function to showcase what a cus
         }
         self.dialogueDict.append(result)
         return result
-
     
-
-class Minecraft():
     def getGamemode(self,transition = True):
         result = {
             "type":"command",
@@ -231,3 +227,5 @@ class Minecraft():
         }
         self.dialogueDict.append(result)
         return result
+
+    
