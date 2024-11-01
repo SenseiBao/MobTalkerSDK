@@ -228,4 +228,8 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
 
-    
+class QuestSystemModule():
+
+    def yes():
+        return
+
