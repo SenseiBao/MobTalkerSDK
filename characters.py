@@ -1,6 +1,6 @@
-from core import characterBase as char
-# GOD I suck at imports...
-Cupa = char.Character(
+from core.model import Character
+# Yep, go ahead, make a new character here~
+Cupa = Character(
         id="cupa", # The Id is for folder structure and such, make it unique pls, lower case
         name = "Cupa", # This shows up on the dialogue box
         description = "A creeper girl???", # Unused for now, but nice to have around~
@@ -11,7 +11,7 @@ Cupa = char.Character(
         traits = None
     )
 
-Andr = char.Character(
+Andr = Character(
         id="andr", # The Id is for folder structure and such, make it unique pls, lower case
         name = "Andr",
         description = "An endergirl???",

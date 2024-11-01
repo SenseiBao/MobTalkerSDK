@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+# Feel free to expand these base classes~
 
 @dataclass
 class Character:

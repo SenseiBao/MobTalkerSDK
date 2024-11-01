@@ -1,6 +1,13 @@
-from core import characterBase as char
+from core import model as char
 
-class Dialogue():
+# This is the Module
+# Basically,  if you're looking to expand the SDK's current functionality...
+# Just make a new class~ 
+# Reverse Engineer the current ones
+# Feel free to customize it to your system~
+
+
+class Dialogue(): # Base class, with 2 minecraft function to showcase what a custom function would look like
 
     def __init__(self):
         self.dialogueDict = []
@@ -193,16 +200,9 @@ class Dialogue():
         self.dialogueDict.append(result)
         return result
 
-    def givePlayer(self,itemId:str,amount:int):
-        result = {
-            "type":"give_player",
-            "action":"give_player",
-            "item_id":itemId,
-            "amount":amount
-        }
-        self.dialogueDict.append(result)
-        return result
+    
 
+class Minecraft():
     def getGamemode(self,transition = True):
         result = {
             "type":"command",
@@ -221,4 +221,13 @@ class Dialogue():
         }
         self.dialogueDict.append(result)
         return result
-
+    
+    def givePlayer(self,itemId:str,amount:int):
+        result = {
+            "type":"give_player",
+            "action":"give_player",
+            "item_id":itemId,
+            "amount":amount
+        }
+        self.dialogueDict.append(result)
+        return result

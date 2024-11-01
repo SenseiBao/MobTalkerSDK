@@ -2,22 +2,25 @@ import json
 
 
 def compileVN(script):
-    # First, run the VN script to gather all states and transitions
-    
-    # Execute the firstMeeting function to gather all the commands
+    # The story 'script' file, automatically compiles into a list of dict, each one represents a state
     script_actions = script
-    print(script_actions)
-    return convertVN(script_actions)
+    # Go ahead and turn on the following to check the list of dict, each one represents a state
+    # print(script_actions)
+    return flattenVN(script_actions)
 
 # Flatten Conditional Statement
-def convertVN(actions: list[dict]) -> list[dict]:
+# To make the FSM as simple and lightweight as possible, we use custom Integer Id Indexing
+# (TODO: Figure out if we can skip manual int indexing and use array indexing)
+def flattenVN(actions: list[dict]) -> list[dict]:
     updated_actions = []
-    actionIndex = 0
+    actionIndex = 0 # First state in the FSM
     for action in actions:
-        action["id"] = actionIndex
-        if action["type"] == "conditional":
+        action["id"] = actionIndex # Put the state 0 or current number as 'id'
+        if action["type"] == "conditional": # Conditionals are special
             subactions = []
-            # actionIndex = actionIndex + len(action["actions"])
+            # There is no easy way to explain this
+            # But basically... We want to...
+            # Yeah, no I'm not explaining this, figure it out yourself future me.
             for subaction in action["actions"]:
                 actionIndex += 1
                 subaction["id"] = actionIndex
