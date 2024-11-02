@@ -47,12 +47,51 @@ class VisualNovelModule(): # Module Class, just add more function as you like
 
     def show(self,character,sprite,transition=False):
         if isinstance(character, char.Character): 
-            sprite = character.id+"/"+character.outfit+"/"+sprite+".png"
+            location = character.id+"/"+character.outfit+"/"+sprite+".png"
             print("Compiling: "+sprite)
             result = {
                 "type":"show_sprite",
                 "action":"show",
-                "sprite":sprite
+                "sprite":character.id,
+                "location":location
+            }
+            if(transition==False):
+                self.dialogueDict.append(result)
+            return result
+        elif isinstance(character,str):
+            location = character+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"show_sprite",
+                "action":"show",
+                "sprite":sprite,
+                "location":location
+            }
+            if(transition==False):
+                self.dialogueDict.append(result)
+            return result
+        else:
+            pass
+    
+    def remove(self,character,sprite="",transition=False):
+        if isinstance(character, char.Character): 
+            print("Compiling: "+sprite)
+            result = {
+                "type":"remove_sprite",
+                "action":"remove_character",
+                "character":character.id
+            }
+            if(transition==False):
+                self.dialogueDict.append(result)
+            return result
+        elif isinstance(character,str):
+            location = character+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"remove_sprite",
+                "action":"remove",
+                "sprite":sprite,
+                "location":location
             }
             if(transition==False):
                 self.dialogueDict.append(result)
