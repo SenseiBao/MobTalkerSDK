@@ -1,4 +1,3 @@
-from characters import Cupa
 from core.modules import VisualNovelModule
 from core.compiler import compile
 # This is the Example Script, obviously~
@@ -103,6 +102,7 @@ def story():
     vn.label("gunpowder")
     vn.say(c,"Hmm... You know what? You're not that bad a person")
     vn.givePlayer("minecraft:gunpowder",6) # Minecraft specific command (might put this in another class)
+    vn.say(c,"You know what to do with it~")
     vn.show(c,"happy")
     vn.say(c,"Pop off stranger!")
     vn.finish() # This ends the game
