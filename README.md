@@ -88,3 +88,42 @@ It's currently a framework, not a functional mod. I mean it is a functional mod.
 
 But VN Engine is already in the mod, just check out the current mod for example implementation.
 
+## The Methods/Scripting
+```
+from characters import Cupa,Andr # Import characters you've defined in characters.py
+vn = VisualNovelModule()
+c = Cupa 
+p = "Player" 
+storyName = "First Meeting" # This will be the name of the Json File
+
+def story(): ## This is the main method for running the story.
+    vn.setVar("aff",0) # Setup the variables
+    vn.setVar("gamemode","None for now") # Initialize them
+
+    vn.initialize(storyName) # Actually unused for now, but good practice for future proof stuff
+    vn.start() # Same as above
+    vn.label("start") # This is a 'Label', it will be used by the jump and choice to know where to go
+    vn.show_left(c,"normal") # c is 'Cupa', "normal" is the sprite name, normal.png. It will be displayed on the left.
+    vn.say("???","Hmm?") # Say function (name, content). The name takes either Character class or a regular string.
+    vn.show(c,"normal") # just `show()` function makes the character move to the middle
+    vn.say(None,"The girl standing before you was strange. She looks like a human wearing a creeper hoodie, is she lost?") # Yes, can be blank too
+    vn.say("???","Oh, a player, hey")
+    vn.choice({
+        "hi": "Hi?", # Format is (label to jump to : displayed text), this goes to the 'hi' label
+        "who": "Who are you?",
+        "engarde": "EN GARDE!!!"
+    })
+
+    vn.label("hi") # This one is hi label
+    vn.addVar("aff", 5) # Adds a variable~
+    vn.show(c,"happy") # happy.png under cupa/default/happy.png
+    vn.say("???","Hi! Didn't expect to meet you, ever...")
+    vn.say(p,"You know me?")
+    vn.show(c,"normal")
+    vn.say("???","Oh for sure! You're 'The Player")
+    vn.say(p,"Is that a big deal?")
+    vn.show(c,"happy")
+    vn.say("???","Is it a big deal for a creeper to look like a chick?")
+    vn.jumpTo("who") # Jump~
+```
+Read More Comments and Instructions on how each method do stuff in the story.py (Still WIP, sorry)
