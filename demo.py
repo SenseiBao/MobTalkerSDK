@@ -7,12 +7,11 @@ vn = VisualNovelModule()
 c = Cupa 
 a = Andr
 p = "Player" 
-storyName = "Demo" # This will be the name of the Json File
+storyName = "demo" # This will be the name of the Json File
 
 def story():
     
     # Come on now, it's intuitive enough~
-    vn.setVar("aff",0)
 
     vn.initialize(storyName)
     vn.start()
@@ -28,31 +27,61 @@ def story():
     vn.show(c,"angry")
     vn.say(c,"Can't believe this mod's been abandoned for that long!!!")
     vn.say(c,"I mean how hard can it be to remake this mod???")
-    vn.show(a,"normal")
+    vn.show_right(a,"normal")
     vn.say(a, "It wasn't easy Cupa, recreating this mod requires the use of DSL")
-    vn.show(c, "scared")
+    vn.show_left(c, "scared")
     vn.say(c, "Bloody hell! Andr, where did you come from?")
+    vn.show_right(a,"normal")
     vn.say(a, "I was in the Stronghold Perusing the archive for...")
-    vn.show(c, "angry")
+    vn.show_left(c, "angry")
     vn.say(c, "I was being rhetoric... Anyway, why are you here?")
     vn.say(a, "I'm here to explain how this mod work. The fact that they see this means that they downloaded the framework, but not load a single a script.")
-    vn.show(c,"normal")
+    vn.show_left(c,"normal")
     vn.say(c, "Ahh... You go do that then~")
     vn.remove(c)
+    vn.show(a,"normal")
     vn.say(a, "Mmm, good to meet you player~")
     vn.say(a, "Now what do you wish to know?")
-
-    vn.label("demo_menu")
+    vn.label("demo_menu") 
+    vn.show(a,"normal")
     vn.choice({
         "about_you": "I wanna know about you...",
         "dev_history": "Why so long to recreate?",
         "dev_excuses":"Where's the default scripts?",
+        "next":"I like to ask something else"
+    })
+
+    vn.label("next")
+    vn.choice({
         "mod_feature" : "What does this mod offer?",
         "mod_sdk":"How to make my own custom script?",
+        "bugs":"Known bugs? Any problem?",
+        "next2":"I like to ask something else",
+    })
+
+    vn.label("next2")
+    vn.choice({
         "mod_compatibility" : "Is this mod compatible with [Insert Mod Here]",
         "community":"Where to find community made scripts?",
         "end": "That's all, thanks!"
     })
+
+    vn.label("bugs")
+    vn.say(a,"Since this is a framework, some bugs can be not from this mod itself...")
+    vn.say(a, "Soo, let me list off some known bugs as of right now, ahem...")
+    vn.say(a, "1. We don't support multiple character sprite yet")
+    vn.say(a, "The dev is working on that currently, most likely this bug is already fixed")
+    vn.say(a, "This is the mod's fault, not the SDK's fault, so, report the issue correctly")
+    vn.say(a, "2. The images are not displayed correctly")
+    vn.say(a, "As of right now, the size of the image are hardcoded to 530 by 900 pixels")
+    vn.say(a, "3. There is no way to programatically remove a sprite  that's already appeared, only replace")
+    vn.say(a, "All of these sprite and image showing issue is being reworked as of writing this")
+    vn.say(a, "The dev is looking to solve problem 1 and 2 at the same time right now")
+    vn.show(a,"tired")
+    vn.say(a, "See minecraft just updated how they handle Screens and it kinda throw them off...")
+    vn.show(a, "normal")
+    vn.say(a,"So yeah, send some love his way alright???")
+    vn.jumpTo("demo_menu")
 
     vn.label("about_you")
     vn.show(a,"shy")
@@ -69,7 +98,8 @@ def story():
     vn.say(a,"Ah... about that...")
     vn.say(a,"Please don't blame the original developer for 'abandoning' this project")
     vn.say(a,"The Mob Talker Mod is deceptively complicated due to a simple thing...")
-    vn.show("asset","old_dsl")
+    vn.show_left(a, "normal")
+    vn.show_custom("asset","old-dsl",16,9,10,6,6,1) # Way simpler, don't you think, seriously
     vn.say(a,"The developer must create a DSL or a Domain Specific Language")
     vn.say(a,"This is what the original Mob Talker Script looks like...")
     vn.say(a,"Think about it, you have to translate this script into something that Minecraft can read")
@@ -100,7 +130,8 @@ def story():
 
     vn.label("cool")
     vn.remove("asset","old-dsl")
-    vn.show("asset","python-dsl")
+    vn.show_left(a, "normal")
+    vn.show_custom("asset","python-dsl",16,9,10,6,6,1)
     vn.say(a, "This is a DSL written in Python.")
     vn.say(a, "Instead of getting Lua to interop with Java, the developer sidestepped this problem entirely")
     vn.say(a, "The developer created a Python SDK Framework that translates python-dsl readable script...")
@@ -110,6 +141,7 @@ def story():
     vn.say(a, "Mod creator and players can just put this Json FSM into the mod Config folder.")
     vn.say(a, "And that's a little history of how this mod is created")
     vn.remove("asset","python-dsl")
+    vn.show(a,"normal")
     vn.say(a, "Is there anything else you wish to know?")
     vn.jumpTo("demo_menu")
 
@@ -134,7 +166,7 @@ def story():
     vn.say(a,"Nor does the dev has any intention on making a PG version script")
     vn.say(a,"In other words, the dev chooses not to make an official script due to legal/ethical/moral issues")
     vn.say(a,"Now, let's talk about something else")
-    vn.label("demo_menu")
+    vn.jumpTo("demo_menu")
 
     vn.label("mod_feature")
     vn.say(a, "In a sense, this is 'VN Cutscenes Mod', it empowers mod maker to add 'cutscenes' into their game")
@@ -174,7 +206,7 @@ def story():
     vn.label("community")
     vn.say(a,"There should be a Discord Link in this Mod's download page")
     vn.show(a,"happy")
-    vn.say(a,"Feel free to make your own script! Make your own character, the Overlord and beyond is your oyster~")
+    vn.say(a,"Feel free to make your own script! Make your own character, the Overworld and beyond is your oyster~")
     vn.say(a,"The dev's desire is just to recreate, revive, and immortalize this mod! Adding the beauty of 2D CG Graphics in Minecraft")
     vn.show(a,"shy")
     vn.say(a,"The other desire is to date me and Cupa...")

@@ -30,6 +30,7 @@ def flattenVN(actions: list[dict]) -> list[dict]:
             updated_actions.append(action)
             updated_actions+=subactions
             actionIndex +=1
+            
         else:
             updated_actions.append(action)
             actionIndex +=1

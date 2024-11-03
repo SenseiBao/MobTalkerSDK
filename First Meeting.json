@@ -1,0 +1,679 @@
+[
+    {
+        "type": "meta",
+        "action": "create_var",
+        "var": "aff",
+        "init": 0,
+        "id": 0
+    },
+    {
+        "type": "meta",
+        "action": "create_var",
+        "var": "gamemode",
+        "init": "None for now",
+        "id": 1
+    },
+    {
+        "type": "meta",
+        "action": "initialize",
+        "scriptName": "First Meeting",
+        "id": 2
+    },
+    {
+        "type": "meta",
+        "action": "start",
+        "id": 3
+    },
+    {
+        "type": "label",
+        "action": "label",
+        "label": "start",
+        "id": 4
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/normal.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 5
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "???",
+        "content": "Hmm?",
+        "id": 6
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "",
+        "content": "The girl standing before you was strange. She looks like a human wearing a creeper hoodie, is she lost?",
+        "id": 7
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "???",
+        "content": "Oh, a player, hey",
+        "id": 8
+    },
+    {
+        "type": "choice",
+        "action": "choice",
+        "choice": [
+            {
+                "label": "hi",
+                "display": "Hi?"
+            },
+            {
+                "label": "who",
+                "display": "Who are you?"
+            },
+            {
+                "label": "engarde",
+                "display": "EN GARDE!!!"
+            }
+        ],
+        "id": 9
+    },
+    {
+        "type": "label",
+        "action": "label",
+        "label": "hi",
+        "id": 10
+    },
+    {
+        "type": "modify_variable",
+        "action": "increment_var",
+        "var": "aff",
+        "value": 5,
+        "id": 11
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/happy.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 12
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "???",
+        "content": "Hi! Didn't expect to meet you, ever...",
+        "id": 13
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Player",
+        "content": "You know me?",
+        "id": 14
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/normal.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 15
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "???",
+        "content": "Oh for sure! You're 'The Player",
+        "id": 16
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Player",
+        "content": "Is that a big deal?",
+        "id": 17
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/happy.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 18
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "???",
+        "content": "Is it a big deal for a creeper to look like a chick?",
+        "id": 19
+    },
+    {
+        "type": "transition",
+        "action": "jump",
+        "label": "who",
+        "id": 20
+    },
+    {
+        "type": "label",
+        "action": "label",
+        "label": "who",
+        "id": 21
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/normal.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 22
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Player",
+        "content": "Who are you?",
+        "id": 23
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "???",
+        "content": "Who am I? A creeper~",
+        "id": 24
+    },
+    {
+        "type": "choice",
+        "action": "choice",
+        "choice": [
+            {
+                "label": "introduction",
+                "display": "Ask her name"
+            },
+            {
+                "label": "ask_item",
+                "display": "Ask for Gunpowder"
+            }
+        ],
+        "id": 25
+    },
+    {
+        "type": "label",
+        "action": "label",
+        "label": "introduction",
+        "id": 26
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Player",
+        "content": "What should I call you?",
+        "id": 27
+    },
+    {
+        "type": "modify_variable",
+        "action": "increment_var",
+        "var": "aff",
+        "value": 5,
+        "id": 28
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/shy.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 29
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "???",
+        "content": "Aww, a player asked my name instead of asking for gunpowder",
+        "id": 30
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "But you can call me Cupa~",
+        "id": 31
+    },
+    {
+        "type": "choice",
+        "action": "choice",
+        "choice": [
+            {
+                "label": "gunpowder",
+                "display": "Great, Nice to meet you, can we end this peacefully?"
+            },
+            {
+                "label": "engarde",
+                "display": "So... since you're a creeper... does that mean we're gonna duke it out?"
+            }
+        ],
+        "id": 32
+    },
+    {
+        "type": "label",
+        "action": "label",
+        "label": "ask_item",
+        "id": 33
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "It's Cupa, by the way, ugh... The nerve...",
+        "id": 34
+    },
+    {
+        "type": "conditional",
+        "action": "conditional",
+        "condition": "greater_than",
+        "var": "aff",
+        "value": 3,
+        "actions": [
+            {
+                "type": "show_sprite",
+                "action": "show",
+                "sprite": "cupa",
+                "location": "characters/cupa/default/angry.png",
+                "position": "CENTER",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio": 5,
+                "hFrameRatio": 8,
+                "column": 7,
+                "row": 1,
+                "id": 36
+            },
+            {
+                "type": "transition",
+                "action": "jump",
+                "label": "gunpowder",
+                "id": 37
+            }
+        ],
+        "id": 35,
+        "end": 38
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/angry.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 36
+    },
+    {
+        "type": "transition",
+        "action": "jump",
+        "label": "gunpowder",
+        "id": 37
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/angry.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 38
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "I don't know, do you got diamonds on you?",
+        "id": 39
+    },
+    {
+        "type": "choice",
+        "action": "choice",
+        "choice": [
+            {
+                "label": "yes",
+                "display": "Yes..."
+            },
+            {
+                "label": "no",
+                "display": "No..."
+            }
+        ],
+        "id": 40
+    },
+    {
+        "type": "label",
+        "action": "label",
+        "label": "yes",
+        "id": 41
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "I was being rhetoric",
+        "id": 42
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Player",
+        "content": "I mean... I can lend you some...",
+        "id": 43
+    },
+    {
+        "type": "transition",
+        "action": "jump",
+        "label": "engarde",
+        "id": 44
+    },
+    {
+        "type": "label",
+        "action": "label",
+        "label": "no",
+        "id": 45
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "I was being rhetoric",
+        "id": 46
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Player",
+        "content": "I mean...",
+        "id": 47
+    },
+    {
+        "type": "transition",
+        "action": "jump",
+        "label": "engarde",
+        "id": 48
+    },
+    {
+        "type": "label",
+        "action": "label",
+        "label": "engarde",
+        "id": 49
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/normal.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 50
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "Since you're asking for a fight, why don't we?",
+        "id": 51
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "You're not on hardcore, right?",
+        "id": 52
+    },
+    {
+        "type": "modify_variable",
+        "action": "modify_var",
+        "var": "gamemode",
+        "value": {
+            "type": "command",
+            "action": "get_gamemode"
+        },
+        "id": 53
+    },
+    {
+        "type": "conditional",
+        "action": "conditional",
+        "condition": "equal",
+        "var": "gamemode",
+        "value": "hardcore",
+        "actions": [
+            {
+                "type": "show_sprite",
+                "action": "show",
+                "sprite": "cupa",
+                "location": "characters/cupa/default/scared.png",
+                "position": "CENTER",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio": 5,
+                "hFrameRatio": 8,
+                "column": 7,
+                "row": 1,
+                "id": 55
+            },
+            {
+                "type": "dialogue",
+                "action": "say",
+                "label": "Cupa",
+                "content": "What the hell?!",
+                "id": 56
+            },
+            {
+                "type": "dialogue",
+                "action": "say",
+                "label": "Cupa",
+                "content": "You're not supposed to play this mod on Hardcore!",
+                "id": 57
+            },
+            {
+                "type": "show_sprite",
+                "action": "show",
+                "sprite": "cupa",
+                "location": "characters/cupa/default/angry.png",
+                "position": "CENTER",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio": 5,
+                "hFrameRatio": 8,
+                "column": 7,
+                "row": 1,
+                "id": 58
+            },
+            {
+                "type": "dialogue",
+                "action": "say",
+                "label": "Cupa",
+                "content": "Screw it, I'm sending you back to World Creation, the hard way!",
+                "id": 59
+            }
+        ],
+        "id": 54,
+        "end": 60
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/scared.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 55
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "What the hell?!",
+        "id": 56
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "You're not supposed to play this mod on Hardcore!",
+        "id": 57
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/angry.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 58
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "Screw it, I'm sending you back to World Creation, the hard way!",
+        "id": 59
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Player",
+        "content": "What does that have anything to do with us fighting?",
+        "id": 60
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "It means I respawn after death",
+        "id": 61
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "Anyway, let's duke it out! I think I got a few gunpowders in my pocket~",
+        "id": 62
+    },
+    {
+        "type": "finish_dialogue",
+        "action": "finish_dialogue",
+        "id": 63
+    },
+    {
+        "type": "label",
+        "action": "label",
+        "label": "gunpowder",
+        "id": 64
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "Hmm... You know what? You're not that bad a person",
+        "id": 65
+    },
+    {
+        "type": "give_player",
+        "action": "give_player",
+        "item_id": "minecraft:gunpowder",
+        "amount": 6,
+        "id": 66
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "You know what to do with it~",
+        "id": 67
+    },
+    {
+        "type": "show_sprite",
+        "action": "show",
+        "sprite": "cupa",
+        "location": "characters/cupa/default/happy.png",
+        "position": "CENTER",
+        "wRatio": 16,
+        "hRatio": 9,
+        "wFrameRatio": 5,
+        "hFrameRatio": 8,
+        "column": 7,
+        "row": 1,
+        "id": 68
+    },
+    {
+        "type": "dialogue",
+        "action": "say",
+        "label": "Cupa",
+        "content": "Pop off stranger!",
+        "id": 69
+    },
+    {
+        "type": "finish_dialogue",
+        "action": "finish_dialogue",
+        "id": 70
+    }
+]

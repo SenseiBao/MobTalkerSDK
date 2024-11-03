@@ -1,11 +1,9 @@
-from core import model as char
-
 # This is the Module
 # Basically,  if you're looking to expand the SDK's current functionality...
 # Just make a new class~ 
 # Reverse Engineer the current ones
 # Feel free to customize it to your system~
-
+from core.model import Character
 
 class VisualNovelModule(): # Module Class, just add more function as you like
     def __init__(self):
@@ -28,7 +26,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
 
     def say(self,character,content,transition = False):
         name = ""
-        if isinstance(character, char.Character):
+        if isinstance(character, Character):
             name = character.name
         elif(character  == None):
             name = ""
@@ -46,16 +44,46 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         return result
 
     def show(self,character,sprite,transition=False):
-        if isinstance(character, char.Character): 
-            location = character.id+"/"+character.outfit+"/"+sprite+".png"
+        if isinstance(character, Character): 
+            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
             print("Compiling: "+sprite)
             result = {
                 "type":"show_sprite",
                 "action":"show",
                 "sprite":character.id,
-                "location":location
+                "location":location,
+                "position":"CENTER",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio":5,
+                "hFrameRatio":8,
+                "column":7,
+                "row":1
             }
             if(transition==False):
+                self.dialogueDict.append(result)
+            return result
+        else:
+            pass
+
+    def show_custom(self,character,sprite,wRatio,hRatio,wFrameRatio,hFrameRatio,colPos,rowPos,nested=False):
+        if isinstance(character, Character): 
+            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"show_sprite",
+                "action":"show",
+                "sprite":character.id,
+                "location":location,
+                "position":"CUSTOM",
+                "wRatio": wRatio,
+                "hRatio": hRatio,
+                "wFrameRatio":wFrameRatio,
+                "hFrameRatio":hFrameRatio,
+                "column":colPos,
+                "row":rowPos
+            }
+            if(nested==False):
                 self.dialogueDict.append(result)
             return result
         elif isinstance(character,str):
@@ -65,7 +93,60 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "type":"show_sprite",
                 "action":"show",
                 "sprite":sprite,
-                "location":location
+                "location":location,
+                "position":"CUSTOM",
+                "wRatio": wRatio,
+                "hRatio": hRatio,
+                "wFrameRatio":wFrameRatio,
+                "hFrameRatio":hFrameRatio,
+                "column":colPos,
+                "row":rowPos
+            }
+            if(nested==False):
+                self.dialogueDict.append(result)
+            return result
+        else:
+            pass
+
+    def show_left(self,character,sprite,transition=False):
+        if isinstance(character, Character): 
+            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"show_sprite",
+                "action":"show",
+                "sprite":character.id,
+                "location":location,
+                "position":"LEFT",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio":5,
+                "hFrameRatio":8,
+                "column":3,
+                "row":1
+            }
+            if(transition==False):
+                self.dialogueDict.append(result)
+            return result
+        else:
+            pass
+
+    def show_right(self,character,sprite,transition=False):
+        if isinstance(character, Character): 
+            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"show_sprite",
+                "action":"show",
+                "sprite":character.id,
+                "location":location,
+                "position":"LEFT",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio":5,
+                "hFrameRatio":8,
+                "column":10,
+                "row":1
             }
             if(transition==False):
                 self.dialogueDict.append(result)
@@ -74,24 +155,22 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             pass
     
     def remove(self,character,sprite="",transition=False):
-        if isinstance(character, char.Character): 
+        if isinstance(character, Character): 
             print("Compiling: "+sprite)
             result = {
                 "type":"remove_sprite",
                 "action":"remove_character",
-                "character":character.id
+                "sprite":character.id
             }
             if(transition==False):
                 self.dialogueDict.append(result)
             return result
         elif isinstance(character,str):
-            location = character+"/"+sprite+".png"
             print("Compiling: "+sprite)
             result = {
                 "type":"remove_sprite",
                 "action":"remove",
                 "sprite":sprite,
-                "location":location
             }
             if(transition==False):
                 self.dialogueDict.append(result)
