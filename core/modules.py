@@ -1,7 +1,7 @@
 # This is the Module
 # Basically,  if you're looking to expand the SDK's current functionality...
-# Just make a new class~ 
-# Reverse Engineer the current ones
+# Just add new method here
+# Adding new class unfortunately still doesn't work, (Yet), I'm working on it
 # Feel free to customize it to your system~
 from core.model import Character
 
