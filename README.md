@@ -50,15 +50,15 @@ Right... That
 
 ## Development Workflow
 
-1. example.py
+1. story.py
 
 You can think of this as a 'template' file that you can use to create your script.
 There's comments in there explaining the bare basics. 
 
 I suggest start with trying to make simple short story here.
 
-Once done, just do `python demo.py` or whatever file you name it as.
-That'll create your `Demo.json` file.
+Once done, just do `python story.py` or whatever file you name it as.
+That'll create your `First Meeting.json` file.
 
 2. characters.py
 
@@ -69,7 +69,7 @@ the `models.py` file contains the 'dataclass', feel free to add more.
 
 You can think of this as your very own debugger to test the script. 
 Just run
-`python main.py storyname.json`
+`python main.py "First Meeting.json"`
 And you should be able to start playing it in your terminal before cracking open Minecraft.
 
 Test the branching, states, make sure stuff happen as you like
