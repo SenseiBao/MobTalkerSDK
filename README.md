@@ -32,7 +32,7 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 - Somewhat Organized Codebase 
 - Extensible By Design, just yoink and extend.
 - ~~A Terminal VN Engine "That Just Works" written by Claude!~~ 
-- Everything is written by human. AI Coding Attempts have been tried and is immortalized somewhere in the history. Do not use AI. Believe in yourself. Whatever messs you cook up is always better than the sophisticated BS an AI can cook up. I learned this the hard way
+- Everything is written by human. AI Coding Attempts have been tried and fail spectacularly and is immortalized somewhere in the commit history. Do not use AI. Believe in yourself. Whatever messs you cook up is always better than the sophisticated BS an AI can cook up. I learned this the hard way.
 
 (No, I am not a good programmer if you're wondering)
 
@@ -40,7 +40,7 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 
 1. Fork This Project To Your Favorite IDE
 2. Run demo.py
-3. Run main.py
+3. Run main.py Demo.json
 
 ...
 
@@ -57,8 +57,8 @@ There's comments in there explaining the bare basics.
 
 I suggest start with trying to make simple short story here.
 
-Once done, just do `python example.py` or whatever file you name it as.
-That'll create your `storyname.json` file.
+Once done, just do `python demo.py` or whatever file you name it as.
+That'll create your `Demo.json` file.
 
 2. characters.py
 
@@ -87,25 +87,4 @@ Check out the [Mob Talker Redux](https://github.com/Iteranya/MobTalkerRedux) in 
 It's currently a framework, not a functional mod.
 
 But VN Engine is already in the mod, just check out the current mod for example implementation.
-
-You can slap in the storyname.json into the mod and it'll try to run it.
-
-5. General Purpose
-
-Easy way:
-
-- Wait for someone smarter than you to add compatibility to read and run the json created by this SDK.
-
-Hard way:
-
-- Recreate 'main.py' inside the platform of your choosing. 
-- I did this in Java and embedded it into minecraft. 
-- It was the worst weekend of my life.
-
-Very Hard way:
-
-- Make your own functions at `modules.py` and set some more data class in `model.py` 
-
-Just reverse engineer VisualNovelModule class for guidance. Above that... well... Go back to the easy solution.
-
 
