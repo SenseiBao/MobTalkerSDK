@@ -91,9 +91,9 @@ But VN Engine is already in the mod, just check out the current mod for example 
 ## The Methods/Scripting
 ```
 from characters import Cupa,Andr # Import characters you've defined in characters.py
-vn = VisualNovelModule()
-c = Cupa 
-p = "Player" 
+vn = VisualNovelModule() # Planned to have Multi Module support, but for now... Yeah, just this... unfortunately...
+c = Cupa # Defined in characters folder (Not Inside Core)
+p = "Player" # Works with String Too~ (The 'say' function, I mean)
 storyName = "First Meeting" # This will be the name of the Json File
 
 def story(): ## This is the main method for running the story.
