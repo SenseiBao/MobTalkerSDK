@@ -1,0 +1,15 @@
+So let's think of it like this
+I want each Quest to have a few state:
+
+Locked (Not Visible) -> Triggers
+Unlocked (Visible) -> Accepted
+In Progress (Visible) -> Completion
+Completed (Visible)
+
+Yeah... Another custom compiler...
+
+FUCK!
+
+Anyway~ Am I gonna integrate this to my VN Engine???
+
+Fuck no, we already have achievement mod in minecraft!!!
