@@ -10,7 +10,7 @@ So I ditched Lua and I put together THIS!
 
 What this does is that, you can use this to comfortably build and test your Mob Talker Script. It's a Mini VN Engine Written in Python, a Java version of this VN Engine is what powers the Mob Talker Mod. You can use this mini VN Engine to transpile and test the Mob Talker script in terminal.
 
-As of this writing, unfortunately, asset management is still manual. This is a tool designed for Mod Developer's use for now. (To Compliment the Mob Talker Redux VN Framework). I want to make a nicer version of this tiny SDK, but eh, this is as far as I can go for now. 
+This is a tool designed for Mod Developer's use for now. (To Compliment the Mob Talker Redux VN Framework). I want to make a nicer version of this tiny SDK, but eh, this is as far as I can go for now. 
 
 ...
 
@@ -24,7 +24,7 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 - [x] Build The FSM Reader
 - [x] Build The Terminal VN Game Engine
 - [x] Build A Better Read Me
-- [x] Build A Better Documentation
+- [ ] Build A Better Documentation
 
 ## Features
 
@@ -39,7 +39,7 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 ## Getting Started
 
 1. Fork This Project To Your Favorite IDE
-2. Run example.py
+2. Run demo.py
 3. Run main.py
 
 ...
