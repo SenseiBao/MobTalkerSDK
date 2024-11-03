@@ -84,7 +84,7 @@ What to do with the storyname.json???
 
 Check out the [Mob Talker Redux](https://github.com/Iteranya/MobTalkerRedux) in my repo for the mod itself.
 
-It's currently a framework, not a functional mod.
+It's currently a framework, not a functional mod. I mean it is a functional mod. Just doesn't have a content beyond the demo...
 
 But VN Engine is already in the mod, just check out the current mod for example implementation.
 
