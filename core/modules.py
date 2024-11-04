@@ -42,6 +42,21 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if(transition==False):
             self.dialogueDict.append(result)
         return result
+    
+    def background(self,background):
+        result = {
+            "type":"modify_background",
+            "background":"asset/"+background
+        }
+        self.dialogueDict.append(result)
+        return result
+    
+    def clear_background(self):
+        result = {
+            "type":"clear_background"
+        }
+        self.dialogueDict.append(result)
+        return result
 
     def show(self,character,sprite,transition=False):
         if isinstance(character, Character): 
@@ -179,14 +194,15 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             pass
         
         
-    def choice(self,choice: dict):
+    def choice(self,choice: dict,nested=False):
         print(choice)
         result = {
             "type":"choice",
             "action":"choice",
             "choice":[{"label": key, "display": value} for key, value in choice.items()]
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
         
 

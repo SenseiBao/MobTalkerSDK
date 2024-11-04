@@ -12,6 +12,7 @@ storyName = "demo" # This will be the name of the Json File
 def story():
     
     # Come on now, it's intuitive enough~
+    vn.setVar("background",False)
 
     vn.initialize(storyName)
     vn.start()
@@ -41,6 +42,9 @@ def story():
     vn.remove(c)
     vn.show(a,"normal")
     vn.say(a, "Mmm, good to meet you player~")
+    vn.say(a, "Let's go somewhere else more comfortable...")
+    vn.background("end.png")
+    vn.modVar("background",True)
     vn.say(a, "Now what do you wish to know?")
     vn.label("demo_menu") 
     vn.show(a,"normal")
@@ -58,13 +62,35 @@ def story():
         "bugs":"Known bugs? Any problem?",
         "next2":"I like to ask something else",
     })
-
     vn.label("next2")
+    vn.condSame("background",True,[
+        vn.choice({
+                "mod_compatibility" : "Is this mod compatible with [Insert Mod Here]",
+                "community":"Where to find community made scripts?",
+                "background": "Why are we in the void?",
+                "end": "That's all, thanks!"
+            },True)
+    ])
     vn.choice({
-        "mod_compatibility" : "Is this mod compatible with [Insert Mod Here]",
-        "community":"Where to find community made scripts?",
-        "end": "That's all, thanks!"
-    })
+                "mod_compatibility" : "Is this mod compatible with [Insert Mod Here]",
+                "community":"Where to find community made scripts?",
+                "void": "Can you send me back to the void?",
+                "end": "That's all, thanks!"
+            })
+    vn.label("void")
+    vn.show(a,"happy")
+    vn.say(a,"For Sure!")
+    vn.background("end.png")
+    vn.say(a, "There we go, the void~")
+    vn.jumpTo("demo_menu")
+
+    vn.label("background")
+    vn.say(a,"Oh, no worries, we're not actually in the void")
+    vn.say(a,"Just showing off what the mod can do!")
+    vn.clear_background()
+    vn.modVar("background",False)
+    vn.say(a,"There, all back to normal~")
+    vn.jumpTo("demo_menu")
 
     vn.label("bugs")
     vn.say(a,"Since this is a framework, some bugs can be not from this mod itself...")
