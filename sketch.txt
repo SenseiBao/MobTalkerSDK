@@ -146,3 +146,24 @@ Everything gets combined into a single script.
 It works cross-file too
 
 Let's not overcomplicate this yea?
+
+
+UPDATE!
+
+Everything Finished~
+
+The thingy is working as expected!
+
+And I don't have to deal with a single venv, or actual workspace management!!!
+
+And the script maker can work with a single file monolith
+Or well organized script folder!
+
+Let's gooooo~
+
+HUMU!!!!!
+
+...
+
+Nyaaaaa~
+
