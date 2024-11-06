@@ -7,3 +7,7 @@ venv/
  .vscode/
 __pycache__/characterBase.cpython-310.pyc
 __pycache__/characterBase.cpython-310.pyc
+__pycache__/characters.cpython-310.pyc
+core/__pycache__/compiler.cpython-310.pyc
+core/__pycache__/model.cpython-310.pyc
+core/__pycache__/modules.cpython-310.pyc
