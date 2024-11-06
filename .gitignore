@@ -6,3 +6,5 @@ __pycache__/
 
 # Exterminate pycache directories within core
 core/__pycache__/
+
+*.json
