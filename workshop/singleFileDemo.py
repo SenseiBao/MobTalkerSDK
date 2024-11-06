@@ -1,6 +1,12 @@
 from core.modules import VisualNovelModule
 from core.compiler import compile
-# This is the Example Script, obviously~
+# -------------------------------------------------------
+# This is the Example of a standalone script
+# -------------------------------------------------------
+
+# So like, a standalone script will compile into a single script
+# Think of it like a single 100k words word document.
+# If that your style, this is how you do it
 
 from characters import Cupa,Andr # Import characters you've defined in characters.py
 vn = VisualNovelModule()

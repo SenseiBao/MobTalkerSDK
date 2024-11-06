@@ -1,12 +1,13 @@
 from core.modules import VisualNovelModule
-from core.compiler import compile
 # This is the Example Script, obviously~
 
 from characters import Cupa,Andr # Import characters you've defined in characters.py
 vn = VisualNovelModule()
 c = Cupa 
 p = "Player" 
-storyName = "First Meeting" # This will be the name of the Json File
+storyName = "First Meeting" # This will be the name that gets initialized
+# I honestly forgot what it's gonna initialized into
+# And I'm too scared to remove it (too lazy to test if it breaks anything)
 
 def story():
     
@@ -108,9 +109,3 @@ def story():
     vn.finish() # This ends the game
 
     return vn.dialogueDict
-
-
-def main():compile(storyname=storyName,script=story()) # Yeah, just run this file :v
-
-if __name__ == "__main__":
-    main() 

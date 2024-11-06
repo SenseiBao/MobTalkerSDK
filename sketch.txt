@@ -68,4 +68,81 @@ Adding Step 5 like venv, build dependency, etc, will just overcomplicate stuff y
 
 Anyway, let's see... What's the easiest way they can start working?????
 
-Template,  definitely, so I'll just have to make something that helps them
+Template,  definitely, so I'll just have to make something that helps them get started.
+
+But before that, how do I want them to work on the project????
+
+Well... First I want them to define who the characters are...
+
+So... they open thingy and "Oh, let's make a character"
+
+And they can start Nyoomin*
+*nyoomin - Verb, a word used to describe the act of continuing what one sets up to do.
+
+So, here's the general workflow:
+
+- Make character
+- Write dialogue
+- Compile
+- Send to Minecraft
+- Profit???????
+
+...
+
+Yea??? MAYBE YES!?
+
+Or maybe I'm doing this the wrong way.
+
+Maybe forcing my ideal of simplicity is not always the right way of doing things?
+I can't keep avoiding my problems, sooner or later, the tech debt will caught up to me.
+People will question if I even doing this properly, if I even have the best intention in mind, if...
+
+If...
+...
+
+Lol, lmao, just kidding, fuck the  proper route.
+
+I'm a Toy Maker not a Developer. 
+And this shit is marked as choking hazard.
+
+Anyway, let's continue. 
+
+How do I make 'character creation'  easy???
+
+Well, just slap em together in the Script!!!
+
+How do I make 'write dialogue creation' easy???
+
+Well just slap em together in the Script!!!
+
+What if they want to get organized?
+
+Creating multiple dialogue files?
+
+...
+
+...
+
+See... the dialogue file is just a flat dict that gets processed into a json array... right???
+
+So...
+
+dictArray1+dictArray2 = theDictArray
+
+Compile theDictArray into FSM
+
+...
+
+Am I... Am I wrong???
+
+Like... That's it, just, combine the two
+
+And like, how to connect them???
+
+jumpTo and label??? Same logic as how you jump from different part of the script.
+
+Everything gets combined into a single script.
+
+It works cross-file too
+
+Let's not overcomplicate this yea?
