@@ -43,8 +43,11 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 ## Setting Up Your Workshop
 
 Step 1: Make an empty folder
+
 Step 2: `git clone https://github.com/Iteranya/MobTalkerSDK`
+
 Step 3: Open the thing in VS code
+
 Step 4: Locate the Workshop folder
 
 Right... That
@@ -52,9 +55,14 @@ Right... That
 ## Script Development Workflow
 
 0. The Folders
+
+
 backups - Just some stuff, nothing important
+
 workshop - Where you'll do your script making
+
 workshop/core - Don't touch, unless you're looking to add new features
+
 workshop/script - an example of how to organize your stuff into multiscript
 
 1. `singleFileDemo.py`
