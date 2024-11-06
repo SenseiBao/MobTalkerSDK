@@ -25,6 +25,10 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 - [x] Build The Terminal VN Game Engine
 - [x] Build A Better Read Me
 - [ ] Build A Better Documentation
+- [ ] Organize The SDK into an Actual SDK
+- [ ] Organize The Script
+- [ ] Set Project Directory
+- [ ] Fix The Import (Why is Import so hard? I don't get it)
 
 ## Features
 
