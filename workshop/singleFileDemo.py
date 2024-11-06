@@ -1,7 +1,7 @@
 from core.modules import VisualNovelModule
 from core.compiler import compile
 # -------------------------------------------------------
-# This is the Example of a standalone script
+# This is the Example of a Single File Script
 # -------------------------------------------------------
 
 # So like, a standalone script will compile into a single script
