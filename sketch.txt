@@ -1,15 +1,71 @@
-So let's think of it like this
-I want each Quest to have a few state:
+It has come to my attention that I am an absolute Neanderthal
 
-Locked (Not Visible) -> Triggers
-Unlocked (Visible) -> Accepted
-In Progress (Visible) -> Completion
-Completed (Visible)
+I did NOT apparently, setup my Python Project on the SDK properly
 
-Yeah... Another custom compiler...
+The only reason why it works is
 
-FUCK!
+1. I did not use any dependency
+2. It only requires 3 files to works
+3. Sheer Dumb Luck
+4. (Also maybe because I deal with Pure Data)
 
-Anyway~ Am I gonna integrate this to my VN Engine???
+And due to that, I uhhhhhh.......
 
-Fuck no, we already have achievement mod in minecraft!!!
+Well, EVENTUALLY I, or someone else, would have to do this, YEA!?!?!
+
+But NOW... Hear Me Out
+
+Script Makers are not programmers
+^ They are, this is terrible excuse
+
+AND LIKE if I went this long without realizing that imports doesn't works
+Or that there are no __init__.py anywhere in this codebase...
+^ It's pure dumb Luck
+
+This just means that I can, ONCE AGAIN! Avoid the Problem Like a Coward!!!
+^ This part is true
+
+So... Let's think about it...
+
+If I am a script maker, what would I want???
+
+How do I want to get this... "Zen" sort of thing????
+
+Hmmmmmm...
+
+Okay, what is it that the Script Maker make?
+
+No, even more specific, what are Script Maker? Who's gonna use my SDK?
+
+- Mod Maker
+- Modpack Maker
+- Standalone Script Maker
+
+Mod Maker can deal with Minecraft, they can deal with this.
+
+Okay, bad, bad Iteranya, you gotta want to make this thing as comfy as possible.
+
+Which one of my user has the LEAST amount of experience in coding????
+
+Standalone Script Maker, writers and artists.
+
+So, I have to make this thing as super friendly to artists and writers as possible~
+
+(Ahem)
+
+So, we'll design something that artists and writers would want to use... 
+
+I can't make a GUI so they still need code editor
+
+Therefore, I have to start with the simplest thing imaginable
+
+Step 1: Make an empty folder
+Step 2: `git clone https://github.com/Iteranya/MobTalkerSDK`
+Step 3: Open the thing in VS code
+Step 4: Start working
+
+Adding Step 5 like venv, build dependency, etc, will just overcomplicate stuff you see???
+
+Anyway, let's see... What's the easiest way they can start working?????
+
+Template,  definitely, so I'll just have to make something that helps them

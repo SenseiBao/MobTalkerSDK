@@ -1,16 +1,8 @@
-venv/
- __pycache__/
- *.pyc
- .vscode/venv/
- core/__pycache__
- *core/__pycache__
- *.pyc
- .vscode/
-__pycache__/characterBase.cpython-310.pyc
-__pycache__/characterBase.cpython-310.pyc
-__pycache__/characters.cpython-310.pyc
-core/__pycache__/compiler.cpython-310.pyc
-core/__pycache__/model.cpython-310.pyc
-core/__pycache__/modules.cpython-310.pyc
-core/__pycache__/characterBase.cpython-310.pyc
-core/__pycache__/dialogueModule.cpython-310.pyc
+# Eliminate all pesky compiled Python files
+*.pyc
+
+# Zap any __pycache__ directories from existence
+__pycache__/
+
+# Exterminate pycache directories within core
+core/__pycache__/
