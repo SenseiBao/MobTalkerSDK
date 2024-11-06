@@ -42,6 +42,8 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 
 ## Setting Up Your Workshop
 
+Step 0: Install Python, then `pip install dataclasses`
+
 Step 1: Make an empty folder
 
 Step 2: `git clone https://github.com/Iteranya/MobTalkerSDK`
@@ -55,7 +57,6 @@ Right... That
 ## Script Development Workflow
 
 0. The Folders
-
 
 backups - Just some stuff, nothing important
 
@@ -88,7 +89,9 @@ Again, just run the file and it'll create a single Json (the scripts get combine
 
 This is where you make character.
 You can get creative, most of the stuff there are fluff (like description and traits)
+
 The important parts are:
+
 - id - this is the name of the folder containing character sprites
 - name - this is the character's displayed name
 - outfit - it's "default" by default, it contains character's default outfit (more info on this at the characters file)
