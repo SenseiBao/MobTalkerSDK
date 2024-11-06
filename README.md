@@ -40,44 +40,63 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 
 (No, I am not a good programmer if you're wondering)
 
-## Getting Started
+## Setting Up Your Workshop
 
-1. Fork This Project To Your Favorite IDE
-2. Run demo.py
-3. Run main.py Demo.json
-
-...
-
-Yeah, that's it, what else do you want???
+Step 1: Make an empty folder
+Step 2: `git clone https://github.com/Iteranya/MobTalkerSDK`
+Step 3: Open the thing in VS code
+Step 4: Locate the Workshop folder
 
 Right... That
 
-## Development Workflow
+## Script Development Workflow
 
-1. story.py
+0. The Folders
+backups - Just some stuff, nothing important
+workshop - Where you'll do your script making
+workshop/core - Don't touch, unless you're looking to add new features
+workshop/script - an example of how to organize your stuff into multiscript
+
+1. `singleFileDemo.py`
 
 You can think of this as a 'template' file that you can use to create your script.
 There's comments in there explaining the bare basics. 
 
-I suggest start with trying to make simple short story here.
+You can run this file and it will automatically compile it into a json file.
 
-Once done, just do `python story.py` or whatever file you name it as.
-That'll create your `First Meeting.json` file.
+(if you're in VS Code, that's the run bottom at the top right of the screen)
 
-2. characters.py
+It'll show up somewhere outside the workshop, near main.py, usually
 
-This is where the characters are at. You can add more stuff in it too.
-the `models.py` file contains the 'dataclass', feel free to add more.
+2. `multiFileDemo.py`
+
+Exactly what it says on the tin. This and the script folder and everything in it, is an example of how you can use this thing work on Multiple Script.
+
+Again, just run the file and it'll create a single Json (the scripts get combined into one, yes)
+
+(More on this later)
+
+3. `characters.py`
+
+This is where you make character.
+You can get creative, most of the stuff there are fluff (like description and traits)
+The important parts are:
+- id - this is the name of the folder containing character sprites
+- name - this is the character's displayed name
+- outfit - it's "default" by default, it contains character's default outfit (more info on this at the characters file)
 
 3. main.py
 
 You can think of this as your very own debugger to test the script. 
 Just run
-`python main.py "First Meeting.json"`
+
+`python main.py "storyname.json"`
+
 And you should be able to start playing it in your terminal before cracking open Minecraft.
 
 Test the branching, states, make sure stuff happen as you like
 It's a terminal, it doesn't support images. 
+
 (Yet, might make a simple UI Presentation after this)
 
 Anyway, the storyname.json is the end product. 
@@ -130,4 +149,4 @@ def story(): ## This is the main method for running the story.
     vn.say("???","Is it a big deal for a creeper to look like a chick?")
     vn.jumpTo("who") # Jump~
 ```
-Read More Comments and Instructions on how each method do stuff in the story.py (Still WIP, sorry)
+Read More Comments and Instructions on how each method do stuff in the demo files (Still WIP, sorry)

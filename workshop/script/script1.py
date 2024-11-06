@@ -10,7 +10,8 @@ def story():
     
     vn.setVar("aff",0) # Initialize Variable
     vn.setVar("gamemode","None for now") # And all that jazz
-
+    # No need for the initialize flag??? I think???
+    # What is it even for anyway???
     vn.start()
     vn.label("start") # This is a 'Label', it will be used by the jump and choice to know where to go
     vn.show(c,"normal") # show function will automatically create a path. "normal" is the sprite name, normal.png
