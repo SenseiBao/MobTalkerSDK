@@ -70,7 +70,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "position":"CENTER",
                 "wRatio": 16,
                 "hRatio": 9,
-                "wFrameRatio":5,
+                "wFrameRatio":4,
                 "hFrameRatio":8,
                 "column":7,
                 "row":1
@@ -135,7 +135,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "position":"LEFT",
                 "wRatio": 16,
                 "hRatio": 9,
-                "wFrameRatio":5,
+                "wFrameRatio":4,
                 "hFrameRatio":8,
                 "column":3,
                 "row":1
@@ -158,7 +158,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "position":"LEFT",
                 "wRatio": 16,
                 "hRatio": 9,
-                "wFrameRatio":5,
+                "wFrameRatio":4,
                 "hFrameRatio":8,
                 "column":10,
                 "row":1
