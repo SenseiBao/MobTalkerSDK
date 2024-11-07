@@ -16,11 +16,17 @@ p = "Player"
 storyName = "demo" # This will be the name of the Json File
 
 def story():
-    
+
+
     # Come on now, it's intuitive enough~
     vn.setVar("background",False)
 
-    vn.initialize(storyName)
+    vn.differentDay([
+        "day1","day2","day3","day4"
+    ])
+    vn.sameDay([
+        "idle1","idle2","idle3","idle4"
+    ])
     vn.start()
     vn.label("start") # This is a 'Label', it will be used by the jump and choice to know where to go
     vn.show(c,"happy")

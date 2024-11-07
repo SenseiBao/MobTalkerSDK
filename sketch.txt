@@ -167,3 +167,66 @@ HUMU!!!!!
 
 Nyaaaaa~
 
+
+
+
+
+Okay, next up is the uhhhh...
+
+The THINGY!!!
+
+Day, yes, Day, FOCUS! COME ON!!
+
+I haven't had coffee, brb
+
+Okay, got coffee...
+
+Now, Day... How do I day...
+
+How would script maker do 'Day'?
+
+...
+
+I think instead of day, we can do 'meeting'?
+
+Like, number of meeting?? Sort of thing????
+
+Hmmmmm...
+
+If we want to do that... HMMMM...
+
+Or should we go with Monika After Story approach?????
+
+You go in there... And...
+
+After certain amount of interaction, aff will not increase????
+
+Or maybe the 'aff' event will be gatekept???
+
+No, no, something simpler! 
+
+Be the script maker, what's the easiest and most intuitive way for me to design this Galge Relationship System???
+
+...
+
+Limit Conversation?????
+
+NGAAAAAAAA!!!!
+
+I realized now I don't play Eroge Enough...
+
+Hmmm...
+
+So here's how the new Mob Talker mod interacts with player. 
+
+Basically, when you talk with one of the mob girl, you will trigger an "Event" conversation. 
+
+When you finish the "Event" conversation any repeat conversation will be marked as "Idle" conversation, these are very short by nature. 
+
+If it's different day (so a day or two has passed), triggering conversation again will run another "Event"
+
+Even then, some event can be gatelocked behind Affection Point. And one of the best way to increase affection is doing some mission (coming soon) and maybe quests (not coming soon)
+
+And if all the events have been exhausted, then, well, the "Idle" conversation will trigger from then on until Script maker updates the script.
+
+

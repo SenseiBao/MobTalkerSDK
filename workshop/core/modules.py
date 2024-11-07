@@ -280,6 +280,28 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             "value": value
         }
         self.dialogueDict.append(result)
+        return result
+    
+    def differentDay(self,eventlist:list):
+        print("Compiling day management")
+        result = {
+            "type":"day_management",
+            "action":"different_day",
+            "events":eventlist
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def sameDay(self,eventlist:list):
+        print("Compiling same day management")
+        result = {
+            "type":"day_management",
+            "action":"same_day",
+            "events":eventlist
+        }
+        self.dialogueDict.append(result)
+        return result
+
 
     def condSame(self,varName: str, equalValue, actions):
         print("Compiling: "+varName)
