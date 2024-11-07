@@ -42,7 +42,7 @@ Anyway, if I pull this off, consider Mob Talker Mod revived.
 
 ## Setting Up Your Workshop
 
-Step 0: Install Python, then `pip install dataclasses`
+Step 0: Install Python, then `pip install dataclasses` (You might be able to skip the pip install dataclasses part, I forgot if this is default python stuff, I'll consider turning to primitive class)
 
 Step 1: Make an empty folder
 
