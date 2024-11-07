@@ -8,3 +8,4 @@ __pycache__/
 core/__pycache__/
 
 *.json
+.vscode
