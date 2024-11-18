@@ -4,7 +4,7 @@
 # Adding new class unfortunately still doesn't work, (Yet), I'm working on it
 # Feel free to customize it to your system~
 from core.model import Character
-
+import re
 class VisualNovelModule(): # Module Class, just add more function as you like
     def __init__(self):
         self.dialogueDict = []
@@ -24,7 +24,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
 
-    def say(self, character, content, transition=False):
+    def say(self, character, content, nested=False):
         name = ""
         if isinstance(character, Character):
             name = character.name
@@ -44,7 +44,32 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             "label": name,
             "content": content
         }
-        if not transition:
+        if not nested:
+            self.dialogueDict.append(result)
+        return result
+    
+    def say(self, character, content, voice:str=None,nested=False):
+        name = ""
+        if isinstance(character, Character):
+            name = character.name
+        elif character == None:
+            name = ""
+        else:
+            name = character
+        print("Compiling: " + content)
+        contains_uppercase = any(char.isupper() for char in content)
+
+        # Check if content has no whitespace and is uppercase
+        if not contains_uppercase and not any(char in content for char in [' ', '.', ',', '!', '?', '#','@','$','*','`',':']):
+            raise ValueError("Look suspiciously like a 'show' statement because it contains no whitespace or a capital letter. If this is a mistake, use 'say_special' instead of say to bypass this check. But seriously, do double check it, okay??? You probably want to do a `show(c,\""+content+"\")` rather than `say(c,"+content+")`. This check will make your life easier, I swear, it's better if you caught on to this error in the SDK than in Minecraft. At least you don't have to wait to boot up minecraft to check all these errors. Ya hear??? But if  you really don't like it, then you can disable this check permanently by going to modules.py and disable the raise value  stuff in the say method. Don't say I didn't warn you.")
+        result = {
+            "type": "dialogue",
+            "action": "say",
+            "label": name,
+            "content": content,
+            "voice":voice
+        }
+        if not nested:
             self.dialogueDict.append(result)
         return result
     
@@ -82,12 +107,38 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-
+    
+    def voice_effect(self, sound):
+        result = {
+            "type":"play_sound",
+            "action":"sound_effect",
+            "sound":sound
+        }
+        self.dialogueDict.append(result)
+        return result
+    
+    def play_music(self, music):
+        result = {
+            "type":"play_music",
+            "action":"play_music",
+            "music":music
+        }
+        self.dialogueDict.append(result)
+        return result
+    
+    def stop_music(self):
+        result = {
+            "type":"play_music",
+            "action":"stop_music",
+            "music":None
+        }
+        self.dialogueDict.append(result)
+        return result
     def show(self, character, sprite, transition=False):
         if isinstance(character, Character):
             # Check if sprite contains any whitespace
-            if any(char in sprite for char in [' ', '.', ',', '!', '?', '#','@','$','*']):
-                raise ValueError("Sprite name cannot contain special characters or white space.")
+            if re.search(r"[A-Z\s.,!?#@$*]", sprite):
+                raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
             
             location = "characters/" + character.id + "/" + character.outfit + "/" + sprite + ".png"
             print("Compiling: " + sprite)
@@ -113,8 +164,8 @@ class VisualNovelModule(): # Module Class, just add more function as you like
 
     def show_custom(self,character,sprite,wRatio,hRatio,wFrameRatio,hFrameRatio,colPos,rowPos,nested=False):
         if isinstance(character, Character): 
-            if ' ' in sprite:
-                raise ValueError("Sprite name cannot contain whitespace.")
+            if re.search(r"[A-Z\s.,!?#@$*]", sprite):
+                raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
             location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
             print("Compiling: "+sprite)
             result = {
@@ -154,9 +205,55 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             return result
         else:
             pass
+    def show_background(self,character,sprite,nested=False):
+        if isinstance(character, Character): 
+            if re.search(r"[A-Z\s.,!?#@$*]", sprite):
+                raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
+            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"modify_background",
+                "action":"show",
+                "sprite":character.id,
+                "location":location,
+                "position":"CUSTOM",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio":16,
+                "hFrameRatio":9,
+                "column":1,
+                "row":1
+            }
+            if(nested==False):
+                self.dialogueDict.append(result)
+            return result
+        elif isinstance(character,str):
+            location = character+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"show_sprite",
+                "action":"show",
+                "sprite":sprite,
+                "location":location,
+                "position":"CUSTOM",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio":16,
+                "hFrameRatio":9,
+                "column":1,
+                "row":1
+            }
+            if(nested==False):
+                self.dialogueDict.append(result)
+            return result
+        else:
+            pass
 
     def show_left(self,character,sprite,transition=False):
         if isinstance(character, Character): 
+            if re.search(r"[A-Z\s.,!?#@$*]", sprite):
+                raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
+  
             location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
             print("Compiling: "+sprite)
             result = {
@@ -180,6 +277,9 @@ class VisualNovelModule(): # Module Class, just add more function as you like
 
     def show_right(self,character,sprite,transition=False):
         if isinstance(character, Character): 
+            if re.search(r"[A-Z\s.,!?#@$*]", sprite):
+                raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
+  
             location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
             print("Compiling: "+sprite)
             result = {
@@ -456,3 +556,52 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
+    
+
+class SoundModule():
+
+    def __init__(self):
+        self.soundDict = []
+
+    def voice(self, name):
+        result= {
+            f"sound.{name}": {
+                "sounds": [
+                    {
+                        "name": f"mobtalkerredux:sound/{name}"
+                    }
+                ]
+            }
+        }
+        self.soundDict.append(result)
+        return result
+    
+    def music(self, name):
+        result= {
+            f"music.{name}": {
+                "sounds": [
+                    {
+                        "name": f"mobtalkerredux:music/{name}",
+                        "stream":True
+                    }
+                ]
+            }
+        }
+        self.soundDict.append(result)
+        return result
+    
+    def generate_sound_dict(self,start, end,name,sound):
+        sound_dict = {}
+        for i in range(start, end + 1):
+            sound_key = f"sound.{name}-{i:02}"  # Formats the number as two digits
+            sound_dict[sound_key] = {
+                "sounds": [
+                    {
+                        "name": f"mobtalkerredux:sound/{name}-{i:02}",
+                        "stream": True,
+                        "volume": sound
+                    }
+                ]
+            }
+        self.soundDict.append(sound_dict)
+        return sound_dict
