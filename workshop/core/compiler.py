@@ -1,5 +1,5 @@
 import json
-import os
+
 
 def compileVN(script):
     # The story 'script' file, automatically compiles into a list of dict, each one represents a state
@@ -67,13 +67,13 @@ def check(actions: list[dict]):
         # Check if any jump points to a non-existing label
     for jump in existing_jump:
         if jump not in existing_label:
-            raise ValueError(f"Label not found: {jump}\n\nA jumpTo or a 'choice' or an 'unlock event' statement is pointing to a non-existent label called: {jump}. You can bypass this error and watch as your game crashes to a Null Pointer Exception when running this script. Or you can do a Ctrl+F and look for {jump} and make sure that it goes somewhere.")
+            raise ValueError(f"Label not found: {jump}")
     
     # Check for duplicate IDs and provide detailed error messages
     for action_id, actions_with_id in existing_id.items():
         if len(actions_with_id) > 1:
             action_details = "\n".join(str(action) for action in actions_with_id)
-            raise ValueError(f"Duplicate action found:\n{action_details}\n\nThis usually happens because you forgot to add 'True' inside nested conditionals. Yeah, I know, weird, but you have specifically tell this thing when you make a nested statement of any kind... Sorry for  the weird workaround, I'm still working on a more graceful way of handling nested conditionals. Just mark nested as 'True' aight?")
+            raise ValueError(f"Duplicate action found:\n{action_details}")
 
 
 
@@ -112,14 +112,18 @@ def save_to_json_file(data: list[dict], file_path: str):
     with open(file_path, 'w') as file:
         json.dump(data, file, indent=4)
 
-def compile(storyname, script):
+
+def compile(storyname,script):
     print("Compiling VN script to FSM...")
-    fsm = compileVN(script)  # Assuming compileVN is defined elsewhere
-    
-    # Ensure the 'scripts' directory exists
-    scripts_dir = "mediafile/scripts"
-    if not os.path.exists(scripts_dir):
-        os.makedirs(scripts_dir)
-    
-    # Save the compiled FSM to a JSON file
-    save_to_json_file(fsm, os.path.join(scripts_dir, f"{storyname}.json"))
+    fsm =compileVN(script)
+    save_to_json_file(fsm,storyname+".json")
+
+def sound_compile(sounds):
+    result = compile_sound(sounds)
+    save_to_json_file(result,"mediafile/scripts/sounds.json")
+
+def compile_sound(sounds: list[dict]) -> dict:
+    combined_dict = {}
+    for sound_dict in sounds:
+        combined_dict.update(sound_dict)
+    return combined_dict

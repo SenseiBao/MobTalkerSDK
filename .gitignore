@@ -9,3 +9,5 @@ core/__pycache__/
 
 *.json
 .vscode
+*.zip
+

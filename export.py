@@ -7,17 +7,15 @@
 
 # Have fun then!
 
-
-
 RESOURCE_PACK_NAME = "Example Resource Pack"
 RESOURCE_PACK_DESCRIPTION = "Example Description of the Example Resource Pack"
 TRIGGER_WORDS = "List, of, name, if, your, resource, pack, contains, multiple, characters"
 
-
 # =======================================
 
-
-
+# Oh you want to know how it works???
+# ...
+# Yeah, good luck with that
 
 
 import json
