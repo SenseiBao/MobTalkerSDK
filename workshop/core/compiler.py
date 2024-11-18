@@ -1,5 +1,5 @@
 import json
-
+import os
 
 def compileVN(script):
     # The story 'script' file, automatically compiles into a list of dict, each one represents a state
@@ -112,8 +112,14 @@ def save_to_json_file(data: list[dict], file_path: str):
     with open(file_path, 'w') as file:
         json.dump(data, file, indent=4)
 
-
-def compile(storyname,script):
+def compile(storyname, script):
     print("Compiling VN script to FSM...")
-    fsm =compileVN(script)
-    save_to_json_file(fsm,storyname+".json")
+    fsm = compileVN(script)  # Assuming compileVN is defined elsewhere
+    
+    # Ensure the 'scripts' directory exists
+    scripts_dir = "mediafile/scripts"
+    if not os.path.exists(scripts_dir):
+        os.makedirs(scripts_dir)
+    
+    # Save the compiled FSM to a JSON file
+    save_to_json_file(fsm, os.path.join(scripts_dir, f"{storyname}.json"))
