@@ -60,8 +60,8 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         contains_uppercase = any(char.isupper() for char in content)
 
         # Check if content has no whitespace and is uppercase
-        if not contains_uppercase and not any(char in content for char in [' ', '.', ',', '!', '?', '#','@','$','*','`',':']):
-            raise ValueError("Look suspiciously like a 'show' statement because it contains no whitespace or a capital letter. If this is a mistake, use 'say_special' instead of say to bypass this check. But seriously, do double check it, okay??? You probably want to do a `show(c,\""+content+"\")` rather than `say(c,"+content+")`. This check will make your life easier, I swear, it's better if you caught on to this error in the SDK than in Minecraft. At least you don't have to wait to boot up minecraft to check all these errors. Ya hear??? But if  you really don't like it, then you can disable this check permanently by going to modules.py and disable the raise value  stuff in the say method. Don't say I didn't warn you.")
+        # if not contains_uppercase and not any(char in content for char in [' ', '.', ',', '!', '?', '#','@','$','*','`',':']):
+        #     raise ValueError("Look suspiciously like a 'show' statement because it contains no whitespace or a capital letter. If this is a mistake, use 'say_special' instead of say to bypass this check. But seriously, do double check it, okay??? You probably want to do a `show(c,\""+content+"\")` rather than `say(c,"+content+")`. This check will make your life easier, I swear, it's better if you caught on to this error in the SDK than in Minecraft. At least you don't have to wait to boot up minecraft to check all these errors. Ya hear??? But if  you really don't like it, then you can disable this check permanently by going to modules.py and disable the raise value  stuff in the say method. Don't say I didn't warn you.")
         result = {
             "type": "dialogue",
             "action": "say",
@@ -434,21 +434,23 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             self.dialogueDict.append(result)
         return result
     
-    def idle_chats(self):
+    def idle_chats(self,nested = False):
         result = {
             "type":"idle_chat",
             "action":"idle_chat"
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
     
-    def unlock_dialogue(self,events:list):
+    def unlock_dialogue(self,events:list,nested = False):
         result = {
             "type":"unlock_dialogues",
             "action":"unlock_dialogues",
             "events":events
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
     
     def condNight(self,actions):
