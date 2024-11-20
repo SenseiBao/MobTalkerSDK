@@ -338,14 +338,15 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         return result
         
 
-    def label(self,labelName:str):
+    def label(self,labelName:str,nested=False):
         print("Compiling: "+labelName)
         result = {
             "type":"label",
             "action" : "label",
             "label":labelName
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
 
     def jumpTo(self,labelName:str,nested=False):
@@ -370,13 +371,14 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             self.dialogueDict.append(result)
         return result
 
-    def finish(self):
+    def finish(self,nested=False):
         print("Compiling A Finish Line")
         result = {
             "type":"finish_dialogue",
             "action": "finish_dialogue"
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
         
 
