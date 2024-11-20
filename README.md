@@ -8,7 +8,7 @@ This thing is made because of how bloody frustrating it is to integrate scriptin
 
 So I ditched Lua and I put together THIS!
 
-What this does is that, you can use this to comfortably build and test your Mob Talker Script. It's a Mini VN Engine Written in Python, a Java version of this VN Engine is what powers the Mob Talker Mod. You can use this mini VN Engine to transpile and test the Mob Talker script in terminal.
+What this does is that, you can use this to comfortably build and test your Mob Talker Script. It also come with a resouece pack compiler. Create your resource pack for  the Mob Talker Script in one click, etc, etc.
 
 This is a tool designed for Mod Developer's use for now. (To Compliment the Mob Talker Redux VN Framework). I want to make a nicer version of this tiny SDK, but eh, this is as far as I can go for now. 
 
