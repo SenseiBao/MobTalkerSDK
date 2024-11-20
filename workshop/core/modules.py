@@ -73,7 +73,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             self.dialogueDict.append(result)
         return result
     
-    def say_special(self, character, content, transition=False):
+    def say_special(self, character, content, nested=False):
         name = ""
         if isinstance(character, Character):
             name = character.name
@@ -89,7 +89,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             "label": name,
             "content": content
         }
-        if not transition:
+        if not nested:
             self.dialogueDict.append(result)
         return result
     
@@ -134,7 +134,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-    def show(self, character, sprite, transition=False):
+    def show(self, character, sprite, nested=False):
         if isinstance(character, Character):
             # Check if sprite contains any whitespace
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
@@ -156,7 +156,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "column": 7,
                 "row": 1
             }
-            if not transition:
+            if not nested:
                 self.dialogueDict.append(result)
             return result
         else:
@@ -249,7 +249,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         else:
             pass
 
-    def show_left(self,character,sprite,transition=False):
+    def show_left(self,character,sprite,nested=False):
         if isinstance(character, Character): 
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
@@ -269,13 +269,13 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "column":3,
                 "row":1
             }
-            if(transition==False):
+            if(nested==False):
                 self.dialogueDict.append(result)
             return result
         else:
             pass
 
-    def show_right(self,character,sprite,transition=False):
+    def show_right(self,character,sprite,nested=False):
         if isinstance(character, Character): 
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
@@ -295,13 +295,13 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "column":10,
                 "row":1
             }
-            if(transition==False):
+            if(nested==False):
                 self.dialogueDict.append(result)
             return result
         else:
             pass
     
-    def remove(self,character,sprite="",transition=False):
+    def remove(self,character,sprite="",nested=False):
         if isinstance(character, Character): 
             print("Compiling: "+sprite)
             result = {
@@ -309,7 +309,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "action":"remove_character",
                 "sprite":character.id
             }
-            if(transition==False):
+            if(nested==False):
                 self.dialogueDict.append(result)
             return result
         elif isinstance(character,str):
@@ -319,7 +319,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "action":"remove",
                 "sprite":sprite,
             }
-            if(transition==False):
+            if(nested==False):
                 self.dialogueDict.append(result)
             return result
         else:
@@ -348,14 +348,14 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
 
-    def jumpTo(self,labelName:str,transition=False):
+    def jumpTo(self,labelName:str,nested=False):
         print("Compiling:" + labelName)
         result = {
             "type":"transition",
             "action":"jump",
             "label": labelName
         }
-        if(transition==False):
+        if(nested==False):
             self.dialogueDict.append(result)
         return result
     
@@ -541,12 +541,12 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
     
-    def getGamemode(self,transition = True):
+    def getGamemode(self,nested = True):
         result = {
             "type":"command",
             "action":"get_gamemode"
         }
-        if(transition==False):
+        if(nested==False):
             self.dialogueDict.append(result)
         
         return result
