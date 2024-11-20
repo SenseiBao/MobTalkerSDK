@@ -48,7 +48,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             self.dialogueDict.append(result)
         return result
     
-    def say(self, character, content, voice:str=None,nested=False):
+    def speak(self, character, content, voice:str=None,nested=False):
         name = ""
         if isinstance(character, Character):
             name = character.name
@@ -356,6 +356,17 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             "label": labelName
         }
         if(transition==False):
+            self.dialogueDict.append(result)
+        return result
+    
+    def jumpTo(self,labelName:str,nested=False):
+        print("Compiling:" + labelName)
+        result = {
+            "type":"transition",
+            "action":"jump",
+            "label": labelName
+        }
+        if(nested==False):
             self.dialogueDict.append(result)
         return result
 
