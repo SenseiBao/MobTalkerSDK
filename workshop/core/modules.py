@@ -101,12 +101,12 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
     
-    def clear_background(self):
-        result = {
-            "type":"clear_background"
-        }
-        self.dialogueDict.append(result)
-        return result
+    # def clear_background(self):
+    #     result = {
+    #         "type":"clear_background"
+    #     }
+    #     self.dialogueDict.append(result)
+    #     return result
     
     def voice_effect(self, sound):
         result = {
@@ -205,49 +205,6 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             return result
         else:
             pass
-    def show_background(self,character,sprite,nested=False):
-        if isinstance(character, Character): 
-            if re.search(r"[A-Z\s.,!?#@$*]", sprite):
-                raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
-            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
-            print("Compiling: "+sprite)
-            result = {
-                "type":"modify_background",
-                "action":"show",
-                "sprite":character.id,
-                "location":location,
-                "position":"CUSTOM",
-                "wRatio": 16,
-                "hRatio": 9,
-                "wFrameRatio":16,
-                "hFrameRatio":9,
-                "column":1,
-                "row":1
-            }
-            if(nested==False):
-                self.dialogueDict.append(result)
-            return result
-        elif isinstance(character,str):
-            location = character+"/"+sprite+".png"
-            print("Compiling: "+sprite)
-            result = {
-                "type":"show_sprite",
-                "action":"show",
-                "sprite":sprite,
-                "location":location,
-                "position":"CUSTOM",
-                "wRatio": 16,
-                "hRatio": 9,
-                "wFrameRatio":16,
-                "hFrameRatio":9,
-                "column":1,
-                "row":1
-            }
-            if(nested==False):
-                self.dialogueDict.append(result)
-            return result
-        else:
-            pass
 
     def show_left(self,character,sprite,nested=False):
         if isinstance(character, Character): 
@@ -293,6 +250,29 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "wFrameRatio":4,
                 "hFrameRatio":8,
                 "column":10,
+                "row":1
+            }
+            if(nested==False):
+                self.dialogueDict.append(result)
+            return result
+        else:
+            pass
+
+    def show_full(self,character,sprite,nested=False):
+        if isinstance(character,str):
+            location = character+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"show_sprite",
+                "action":"show",
+                "sprite":sprite,
+                "location":location,
+                "position":"CUSTOM",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio":16,
+                "hFrameRatio":9,
+                "column":1,
                 "row":1
             }
             if(nested==False):
