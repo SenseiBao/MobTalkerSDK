@@ -1,4 +1,5 @@
 import json
+import unicodedata
 
 
 def compileVN(script):
@@ -12,7 +13,7 @@ def compileVN(script):
     return flat
 
 def sanitize(data_list):
-    # Common problematic characters and their replacements
+    # Known problematic characters and their replacements
     replacements = {
         '\u201c': '"',  # Left double quote
         '\u201d': '"',  # Right double quote
@@ -23,21 +24,25 @@ def sanitize(data_list):
         '\u2026': '...',  # Ellipsis
         '\u00a0': ' ',  # Non-breaking space
     }
-    
+
     def sanitize_string(text):
         if not isinstance(text, str):
             return text
-        
+
         # Replace known problematic characters
         for old, new in replacements.items():
             text = text.replace(old, new)
-            
-        # Return the sanitized string without ASCII encoding
-        return text
-    
+
+        # Remove other invisible/control characters
+        sanitized = "".join(
+            char if unicodedata.category(char)[0] != "C" else "?"  # Replace control chars
+            for char in text
+        )
+        return sanitized
+
     def sanitize_dict(d):
         return {k: sanitize_string(v) if isinstance(v, str) else v for k, v in d.items()}
-    
+
     return [sanitize_dict(d) for d in data_list]
 
 def check(actions: list[dict]):

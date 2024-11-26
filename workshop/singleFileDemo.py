@@ -13,7 +13,7 @@ vn = VisualNovelModule()
 c = Cupa 
 a = Andr
 p = "Player" 
-storyName = "demo" # This will be the name of the Json File
+storyName = "cupa" # This will be the name of the Json File
 
 def story():
 
@@ -85,14 +85,14 @@ def story():
     vn.label("void")
     vn.show(a,"happy")
     vn.say(a,"For Sure!")
-    vn.background("end.png")
+    vn.show_full("asset","end.png")
     vn.say(a, "There we go, the void~")
     vn.jumpTo("demo_menu")
 
     vn.label("background")
     vn.say(a,"Oh, no worries, we're not actually in the void")
     vn.say(a,"Just showing off what the mod can do!")
-    vn.clear_background()
+    vn.remove("asset","end.png")
     vn.modVar("background",False)
     vn.say(a,"There, all back to normal~")
     vn.jumpTo("demo_menu")
