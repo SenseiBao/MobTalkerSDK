@@ -48,7 +48,7 @@ def create_resource_pack():
     pack_meta_content = {
         "pack": {
             "description": RESOURCE_PACK_DESCRIPTION + "\nTrigger Word: " + TRIGGER_WORDS,
-            "pack_format": 15
+            "pack_format": VERSION
         }
     }
     
