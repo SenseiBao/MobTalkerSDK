@@ -12,7 +12,6 @@ def compileVN(script):
     return flat
 
 def sanitize(data_list):
-
     # Common problematic characters and their replacements
     replacements = {
         '\u201c': '"',  # Left double quote
@@ -33,8 +32,8 @@ def sanitize(data_list):
         for old, new in replacements.items():
             text = text.replace(old, new)
             
-        # Convert to ASCII-only string, replacing any other unknown characters with ?
-        return text.encode('ascii', 'replace').decode('ascii')
+        # Return the sanitized string without ASCII encoding
+        return text
     
     def sanitize_dict(d):
         return {k: sanitize_string(v) if isinstance(v, str) else v for k, v in d.items()}
