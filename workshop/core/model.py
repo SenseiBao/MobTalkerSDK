@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from enum import Enum
 # Feel free to expand these base classes~
 
 class Character:
@@ -106,18 +107,17 @@ class Character:
     def mood(self, value):
         self._mood = value
 
-@dataclass
-class Status:
-    is_day:str = "<is_day>"
-    hostiles:str = "<hostiles>"
-    below_sky:str = "<below_sky>"
-    near_home:str = "<near_home>"
-    p_uid:str = "<p_uid>"
-    p_health:str = "<p_health>"
-    gamemode:str = "<gamemode>"
-    dimension:str = "<dimension>"
-    x_coor:str = "<x_coor>"
-    y_coor:str = "<y_coor>"
-    z_coor:str = "<z_coor>"
-    held_item:str = "<held_item>"
+class Status(Enum):
+    IS_DAY = "<is_day>"
+    HOSTILES = "<hostiles>"
+    BELOW_SKY = "<below_sky>"
+    NEAR_HOME = "<near_home>"
+    P_UID = "<p_uid>"
+    P_HEALTH = "<p_health>"
+    GAMEMODE = "<gamemode>"
+    DIMENSION = "<dimension>"
+    X_COOR = "<x_coor>"
+    Y_COOR = "<y_coor>"
+    Z_COOR = "<z_coor>"
+    HELD_ITEM = "<held_item>"
     
