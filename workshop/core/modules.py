@@ -48,7 +48,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             self.dialogueDict.append(result)
         return result
     
-    def speak(self, character, content, voice:str=None,nested=False):
+    def say(self, character, content, voice:str=None,nested=False):
         name = ""
         if isinstance(character, Character):
             name = character.name
@@ -101,12 +101,12 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
     
-    # def clear_background(self):
-    #     result = {
-    #         "type":"clear_background"
-    #     }
-    #     self.dialogueDict.append(result)
-    #     return result
+    def clear_background(self):
+        result = {
+            "type":"clear_background"
+        }
+        self.dialogueDict.append(result)
+        return result
     
     def voice_effect(self, sound):
         result = {
@@ -205,6 +205,49 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             return result
         else:
             pass
+    def show_background(self,character,sprite,nested=False):
+        if isinstance(character, Character): 
+            if re.search(r"[A-Z\s.,!?#@$*]", sprite):
+                raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
+            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"modify_background",
+                "action":"show",
+                "sprite":character.id,
+                "location":location,
+                "position":"CUSTOM",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio":16,
+                "hFrameRatio":9,
+                "column":1,
+                "row":1
+            }
+            if(nested==False):
+                self.dialogueDict.append(result)
+            return result
+        elif isinstance(character,str):
+            location = character+"/"+sprite+".png"
+            print("Compiling: "+sprite)
+            result = {
+                "type":"show_sprite",
+                "action":"show",
+                "sprite":sprite,
+                "location":location,
+                "position":"CUSTOM",
+                "wRatio": 16,
+                "hRatio": 9,
+                "wFrameRatio":16,
+                "hFrameRatio":9,
+                "column":1,
+                "row":1
+            }
+            if(nested==False):
+                self.dialogueDict.append(result)
+            return result
+        else:
+            pass
 
     def show_left(self,character,sprite,nested=False):
         if isinstance(character, Character): 
@@ -250,29 +293,6 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "wFrameRatio":4,
                 "hFrameRatio":8,
                 "column":10,
-                "row":1
-            }
-            if(nested==False):
-                self.dialogueDict.append(result)
-            return result
-        else:
-            pass
-
-    def show_full(self,character,sprite,nested=False):
-        if isinstance(character,str):
-            location = character+"/"+sprite+".png"
-            print("Compiling: "+sprite)
-            result = {
-                "type":"show_sprite",
-                "action":"show",
-                "sprite":sprite,
-                "location":location,
-                "position":"CUSTOM",
-                "wRatio": 16,
-                "hRatio": 9,
-                "wFrameRatio":16,
-                "hFrameRatio":9,
-                "column":1,
                 "row":1
             }
             if(nested==False):
@@ -332,18 +352,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
     def jumpTo(self,labelName:str,nested=False):
         print("Compiling:" + labelName)
         result = {
-            "type":"transition",
-            "action":"jump",
-            "label": labelName
-        }
-        if(nested==False):
-            self.dialogueDict.append(result)
-        return result
-    
-    def jumpTo(self,labelName:str,nested=False):
-        print("Compiling:" + labelName)
-        result = {
-            "type":"transition",
+            "type":"nested",
             "action":"jump",
             "label": labelName
         }
@@ -362,7 +371,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         return result
         
 
-    def setVar(self,varName:str,init:any):
+    def setVar(self,varName:str,init:any,nested=False):
         print("Compiling: "+varName)
         result = {
             "type":"meta",
@@ -370,11 +379,12 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             "var": varName,
             "init":init
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
 
     # You can use (-) instead of subVar
-    def addVar(self,varName:str, addAmount:int):
+    def addVar(self,varName:str, addAmount:int,nested=False):
         print("Compiling: "+varName)
         result = {
             "type":"modify_variable",
@@ -382,10 +392,11 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             "var": varName, 
             "value": addAmount
             }
-        self.dialogueDict.append (result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
 
-    def subVar(self,varName:str, subAmount:int):
+    def subVar(self,varName:str, subAmount:int,nested=False):
         print("Compiling: "+varName)
         result = {
             "type":"modify_variable",
@@ -393,10 +404,11 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             "var": varName, 
             "value": subAmount
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
 
-    def modVar(self,varName:str, value:any):
+    def modVar(self,varName:str, value:any,nested=False):
         print("Compiling: "+varName)
         result = {
             "type":"modify_variable",
@@ -404,16 +416,18 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             "var": varName, 
             "value": value
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
     
-    def next(self,label):
+    def next(self,label,nested=False):
         result = {
             "type":"next",
             "action":"next",
             "label":label
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
     
     def night_choice(self,choice: dict,nested=False):
@@ -427,7 +441,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             self.dialogueDict.append(result)
         return result
     
-    def idle_chats(self,nested = False):
+    def idle_chats(self,nested=False):
         result = {
             "type":"idle_chat",
             "action":"idle_chat"
@@ -436,7 +450,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             self.dialogueDict.append(result)
         return result
     
-    def unlock_dialogue(self,events:list,nested = False):
+    def unlock_dialogue(self,events:list,nested=False):
         result = {
             "type":"unlock_dialogues",
             "action":"unlock_dialogues",
@@ -533,23 +547,25 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         
         return result
 
-    def customCommand(self,minecraftCommmand:str):
+    def customCommand(self,minecraftCommmand:str,nested=False):
         result = {
             "type":"command",
             "action":"custom_commmand",
             "command":minecraftCommmand
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
     
-    def givePlayer(self,itemId:str,amount:int):
+    def givePlayer(self,itemId:str,amount:int,nested=False):
         result = {
             "type":"give_player",
             "action":"give_player",
             "item_id":itemId,
             "amount":amount
         }
-        self.dialogueDict.append(result)
+        if(nested==False):
+            self.dialogueDict.append(result)
         return result
     
 
