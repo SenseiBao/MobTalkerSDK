@@ -196,7 +196,6 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "action":"show",
                 "sprite":sprite,
                 "location":location,
-                "dyn_location" : dyn_location,
                 "position":"CUSTOM",
                 "wRatio": wRatio,
                 "hRatio": hRatio,
