@@ -68,7 +68,7 @@ class Character:
     def dyn_outfit(self):
         return self._dyn_outfit
 
-    @outfit.setter
+    @dyn_outfit.setter
     def dyn_outfit(self, value):
         self._dyn_outfit = value
 
