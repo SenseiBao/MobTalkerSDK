@@ -149,6 +149,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "action": "show",
                 "sprite": character.id,
                 "location": location,
+                "dyn_location":dyn_location,
                 "position": "CENTER",
                 "wRatio": 16,
                 "hRatio": 9,
@@ -167,13 +168,15 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if isinstance(character, Character): 
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
-            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
+            location = "characters/" + character.id + "/" + character.outfit + "/" + sprite + ".png"
+            dyn_location = "characters/" + character.id + "/" + character.dyn_outfit + "/" + sprite + ".png"
             print("Compiling: "+sprite)
             result = {
                 "type":"show_sprite",
                 "action":"show",
                 "sprite":character.id,
                 "location":location,
+                "dyn_location" : dyn_location,
                 "position":"CUSTOM",
                 "wRatio": wRatio,
                 "hRatio": hRatio,
@@ -193,6 +196,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
                 "action":"show",
                 "sprite":sprite,
                 "location":location,
+                "dyn_location" : dyn_location,
                 "position":"CUSTOM",
                 "wRatio": wRatio,
                 "hRatio": hRatio,
@@ -212,13 +216,15 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
   
-            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
+            location = "characters/" + character.id + "/" + character.outfit + "/" + sprite + ".png"
+            dyn_location = "characters/" + character.id + "/" + character.dyn_outfit + "/" + sprite + ".png"
             print("Compiling: "+sprite)
             result = {
                 "type":"show_sprite",
                 "action":"show",
                 "sprite":character.id,
                 "location":location,
+                "dyn_location":dyn_location,
                 "position":"LEFT",
                 "wRatio": 16,
                 "hRatio": 9,
@@ -238,13 +244,15 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
   
-            location = "characters/"+character.id+"/"+character.outfit+"/"+sprite+".png"
+            location = "characters/" + character.id + "/" + character.outfit + "/" + sprite + ".png"
+            dyn_location = "characters/" + character.id + "/" + character.dyn_outfit + "/" + sprite + ".png"
             print("Compiling: "+sprite)
             result = {
                 "type":"show_sprite",
                 "action":"show",
                 "sprite":character.id,
                 "location":location,
+                "dyn_location":dyn_location,
                 "position":"LEFT",
                 "wRatio": 16,
                 "hRatio": 9,
