@@ -1,3 +1,4 @@
+
 from core.modules import VisualNovelModule
 # This is the Example Script, obviously~
 
