@@ -1,41 +1,41 @@
-
 from core.modules import VisualNovelModule
-# This is the Example Script, obviously~
+from core.compiler import compile
+# -------------------------------------------------------
+# This is the Example of a Single File Script
+# -------------------------------------------------------
 
-from characters import Cupa,Andr # Import characters you've defined in characters.py
+# So like, a standalone script will compile into a single script
+# Think of it like a single 100k words word document.
+# If that your style, this is how you do it
+
+from characters import Cupa, Andr, Yuki  # Import characters you've defined in characters.py
 vn = VisualNovelModule()
-c = Cupa 
-p = "Player" 
+c = Cupa
+a = Andr
+y = Yuki
+p = "Player"
+storyName = "yuki" # This will be the name of the Json File
 
 def story():
-    
-    vn.setVar("aff",0) # Initialize Variable
-    vn.setVar("gamemode","None for now") # And all that jazz
-    # No need for the initialize flag??? I think???
-    # What is it even for anyway???
+
+
+    # Come on now, it's intuitive enough~
+    vn.setVar("background",False)
     vn.start()
     vn.label("start") # This is a 'Label', it will be used by the jump and choice to know where to go
-    vn.show(c,"normal") # show function will automatically create a path. "normal" is the sprite name, normal.png
-    vn.say("???","Hmm?") # Say function (name, content). The namee takes either Character class or a regular string.
-    vn.say(None,"The girl standing before you was strange. She looks like a human wearing a creeper hoodie, is she lost?")
-    vn.say("???","Oh, a player, hey")
-    vn.choice({
-        "hi": "Hi?", # Format is (label : displayed text), this goes to the 'hi' label
-        "who": "Who are you?",
-        "engarde": "EN GARDE!!!"
-    })
-
-    vn.label("hi") # This one is hi label
-    vn.addVar("aff", 5) # Adds a variable~
-    vn.show(c,"happy")
-    vn.say("???","Hi! Didn't expect to meet you, ever...")
-    vn.say(p,"You know me?")
-    vn.show(c,"normal")
-    vn.say("???","Oh for sure! You're 'The Player")
-    vn.say(p,"Is that a big deal?")
-    vn.show(c,"happy")
-    vn.say("???","Is it a big deal for a creeper to look like a chick?")
-    vn.jumpTo("who")
+    vn.show(y,"happy")
+    vn.say(y,"Oh hey Player! Long time no see! Ahaha~")
+    vn.say(p,"Yeah, been a while huh?")
+    vn.label("end")
+    vn.show(a,"happy")
+    vn.say(a,"Happy to Help, see you later Player!")
+    vn.finish()
 
 
     return vn.dialogueDict
+
+
+def main():compile(storyname=storyName,script=story()) # Yeah, just run this file :v
+
+if __name__ == "__main__":
+    main() 

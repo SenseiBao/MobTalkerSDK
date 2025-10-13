@@ -10,10 +10,10 @@ from core.compiler import compile
 
 from characters import Cupa, Andr, Yuki  # Import characters you've defined in characters.py
 vn = VisualNovelModule()
-c = Cupa 
+c = Cupa
 a = Andr
 y = Yuki
-p = "Player" 
+p = "Player"
 storyName = "yuki" # This will be the name of the Json File
 
 def story():
@@ -38,4 +38,4 @@ def story():
 def main():compile(storyname=storyName,script=story()) # Yeah, just run this file :v
 
 if __name__ == "__main__":
-    main() 
+    main()

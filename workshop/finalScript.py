@@ -8,16 +8,14 @@ from core.compiler import compile
 # This file is the 'core' file
 
 vn = VisualNovelModule() # Your Module~ Always need this~
-storyName = "cupa" # This will be the name of the Json File
+storyName = "yuki" # This will be the name of the Json File
 
 
 # Import your scripts (all the .py file inside the script folder)
 
-from script import script1,script2,script3
+from script import script1,idle
 scripts = [
     script1.story(),
-    script2.story(),
-    script3.story()
 
 ]
 
@@ -31,7 +29,7 @@ def compileMultiStory():
     return vn.dialogueDict
 
 
-def main():compile(storyname=storyName,script=compileMultiStory()) 
+def main():compile(storyname=storyName,script=compileMultiStory())
 
 # Run the file, if you're in VS Code, top right play button.
 
