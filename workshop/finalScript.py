@@ -16,7 +16,7 @@ storyName = "yuki" # This will be the name of the Json File
 from script import script1,idle
 scripts = [
     script1.story(),
-
+    idle.story()
 ]
 
 # Yes, it's that simple
