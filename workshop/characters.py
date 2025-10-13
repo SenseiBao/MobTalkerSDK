@@ -32,3 +32,10 @@ Andr = Character(
         outfit = "default"
 )
 
+Yuki = Character(
+        id="yuki", # The Id is for folder structure and such, make it unique pls, lower case
+        name = "Yuki",
+        description = "Snow Golem",
+        outfit = "default"
+)
+
