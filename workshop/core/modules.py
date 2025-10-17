@@ -464,11 +464,6 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
 
-
-
-
-
-
     def next(self,label):
         result = {
             "type":"next",

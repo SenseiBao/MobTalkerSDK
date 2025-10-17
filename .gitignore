@@ -11,3 +11,5 @@ core/__pycache__/
 .vscode
 *.zip
 
+workshop/project
+venv
