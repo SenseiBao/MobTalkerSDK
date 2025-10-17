@@ -559,6 +559,111 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
+    # Add these RIGHT BEFORE the last method or at the end of the class
+    
+    def setGlobal(self, varName: str, init: any):
+        """Create a global variable shared across all characters"""
+        print("Compiling Global: " + varName)
+        result = {
+            "type": "meta",
+            "action": "create_global",
+            "var": varName,
+            "init": init
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def addGlobal(self, varName: str, addAmount: int):
+        """Add to a global variable"""
+        print("Compiling Global: " + varName)
+        result = {
+            "type": "modify_global",
+            "action": "increment_var",
+            "var": varName,
+            "value": addAmount
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def subGlobal(self, varName: str, subAmount: int):
+        """Subtract from a global variable"""
+        print("Compiling Global: " + varName)
+        result = {
+            "type": "modify_global",
+            "action": "subtract_var",
+            "var": varName,
+            "value": subAmount
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def modGlobal(self, varName: str, value: any):
+        """Modify a global variable"""
+        print("Compiling Global: " + varName)
+        result = {
+            "type": "modify_global",
+            "action": "modify_var",
+            "var": varName,
+            "value": value
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def condGlobalSame(self, varName: str, equalValue, actions):
+        """Conditional check on global variable (equal)"""
+        print("Compiling Global Condition: " + varName)
+        result = {
+            "type": "conditional_global",
+            "action": "conditional",
+            "condition": "equal",
+            "var": varName,
+            "value": equalValue,
+            "actions": actions
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def condGlobalNotSame(self, varName: str, equalValue, actions):
+        """Conditional check on global variable (not equal)"""
+        print("Compiling Global Condition: " + varName)
+        result = {
+            "type": "conditional_global",
+            "action": "conditional",
+            "condition": "not_equal",
+            "var": varName,
+            "value": equalValue,
+            "actions": actions
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def condGlobalLessThan(self, varName: str, lessThanValue, actions):
+        """Conditional check on global variable (less than)"""
+        print("Compiling Global Condition: " + varName)
+        result = {
+            "type": "conditional_global",
+            "action": "conditional",
+            "condition": "less_than",
+            "var": varName,
+            "value": lessThanValue,
+            "actions": actions
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def condGlobalMoreThan(self, varName: str, moreThanValue, actions):
+        """Conditional check on global variable (greater than)"""
+        print("Compiling Global Condition: " + varName)
+        result = {
+            "type": "conditional_global",
+            "action": "conditional",
+            "condition": "greater_than",
+            "var": varName,
+            "value": moreThanValue,
+            "actions": actions
+        }
+        self.dialogueDict.append(result)
+        return result
     
 
 class SoundModule():
@@ -608,3 +713,4 @@ class SoundModule():
             }
         self.soundDict.append(sound_dict)
         return sound_dict
+    
