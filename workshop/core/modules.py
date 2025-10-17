@@ -368,7 +368,8 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if(nested==False):
             self.dialogueDict.append(result)
         return result
-        
+
+    ## LOCAL VAR STUFF
 
     def setVar(self,varName:str,init:any):
         print("Compiling: "+varName)
@@ -414,7 +415,60 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-    
+
+
+    ## GLOBAL VAR STUFF
+
+    def setGlobal(self,varName:str,init:any):
+        print("Compiling: "+varName)
+        result = {
+            "type":"meta",
+            "action": "create_global", 
+            "var": varName,
+            "init":init
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    # You can use (-) instead of subVar
+    def addVarGlobal(self,varName:str, addAmount:int):
+        print("Compiling: "+varName)
+        result = {
+            "type":"modify_global",
+            "action": "increment_var", 
+            "var": varName, 
+            "value": addAmount
+            }
+        self.dialogueDict.append (result)
+        return result
+
+    def subVarGlobal(self,varName:str, subAmount:int):
+        print("Compiling: "+varName)
+        result = {
+            "type":"modify_global",
+            "action": "subtract_var", 
+            "var": varName, 
+            "value": subAmount
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def modVarGlobal(self,varName:str, value:any):
+        print("Compiling: "+varName)
+        result = {
+            "type":"modify_global",
+            "action": "modify_var", 
+            "var": varName, 
+            "value": value
+        }
+        self.dialogueDict.append(result)
+        return result
+
+
+
+
+
+
     def next(self,label):
         result = {
             "type":"next",
@@ -530,6 +584,68 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
+    
+
+
+
+
+    ### Global Condition
+
+    def condSameGlobal(self,varName: str, equalValue, actions):
+        print("Compiling: "+varName)
+        result = {
+            "type":"conditional_global",
+            "action":"conditional",
+            "condition": "equal",
+            "var": varName,
+            "value": equalValue,
+            "actions":actions
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def condNotSameGlobal(self,varName: str, equalValue, actions: list):
+        print("Compiling: "+varName)
+        result = {
+            "type":"conditional_global",
+            "action":"conditional",
+            "condition": "not_equal",
+            "var": varName,
+            "value": equalValue,
+            "actions": actions
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def condLessThanGlobal(self,varName:str, lessThanValue, actions: list):
+        print("Compiling: "+varName)
+        result = {
+            "type":"conditional_global",
+            "action":"conditional",
+            "condition": "less_than",
+            "var": varName,
+            "value": lessThanValue,
+            "actions": actions
+        }
+        self.dialogueDict.append(result)
+        return result
+
+    def condMoreThanGlobal(self,varName:str, moreThanValue, actions: list):  
+        print("Compiling: "+varName)
+        result = {
+            "type":"conditional_global",
+            "action":"conditional",
+            "condition": "greater_than",
+            "var": varName,
+            "value": moreThanValue,
+            "actions": actions
+        }
+        self.dialogueDict.append(result)
+        return result
+
+
+
+
     
     def getGamemode(self,nested = True):
         result = {
