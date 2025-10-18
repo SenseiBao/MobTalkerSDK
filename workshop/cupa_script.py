@@ -4,31 +4,36 @@ from characters import Cupa
 
 vn = VisualNovelModule()
 c = Cupa
+p = "Player"
 storyName = "cupa"
 
 def story():
     vn.start()
-    vn.setGlobal("andr_affection", 0)  # Initialize same global variable
-    
+
+    # Use the new function to initialize a true global variable.
+    # This ensures the variable exists for other scripts to read.
+    vn.setGlobal("knows_andr_secret", False)
+
+    # --- Main Conversation with Cupa ---
     vn.label("start")
     vn.show(c, "normal")
-    vn.say(c, "Hey! I'm Cupa.")
-    vn.say(c, "Let me check Andr's affection...")
-    
-    # Check if Andr's affection is high
-    vn.condGlobalMoreThan("andr_affection", 5, [
-        vn.show(c, "happy", True),
-        vn.say(c, "Wow! You really like Andr! Her affection is above 5!", True)
-    ])
-    
-    # Check if Andr's affection is still 0
-    vn.condGlobalSame("andr_affection", 0, [
-        vn.show(c, "normal", True),
-        vn.say(c, "Hmm, looks like you haven't talked to Andr yet.", True),
-        vn.say(c, "Her affection is still 0.", True)
-    ])
-    
+    vn.say(c, "Hey, Player. Can I trust you with something about Andr?")
+    vn.choice({
+        "yes": "Of course you can.",
+        "no": "I'm not sure."
+    })
+
+    vn.label("no")
+    vn.say(c, "Oh... okay. Nevermind then.")
     vn.finish()
+
+    vn.label("yes")
+    vn.say(c, "He acts all tough, but he's secretly terrified of bunnies. Don't tell him I told you!")
+
+    # Use the new function to modify the global variable.
+    vn.modVarGlobal("knows_andr_secret", True)
+    vn.finish()
+
     return vn.dialogueDict
 
 def main():
