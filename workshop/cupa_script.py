@@ -10,9 +10,8 @@ storyName = "cupa"
 def story():
     vn.start()
 
-    # Use the new function to initialize a true global variable.
-    # This ensures the variable exists for other scripts to read.
-    vn.setGlobal("knows_andr_secret", False)
+    # Initialize the global variable with a number (0 for false).
+    vn.setGlobal("knows_andr_secret", 0)
 
     # --- Main Conversation with Cupa ---
     vn.label("start")
@@ -28,10 +27,10 @@ def story():
     vn.finish()
 
     vn.label("yes")
-    vn.say(c, "He acts all tough, but he's secretly terrified of bunnies. Don't tell him I told you!")
+    vn.say(c, "She acts all tough, but she's secretly terrified of bunnies. Don't tell her I told you!")
 
-    # Use the new function to modify the global variable.
-    vn.modVarGlobal("knows_andr_secret", True)
+    # Modify the global variable using a number (1 for true).
+    vn.modVarGlobal("knows_andr_secret", 1)
     vn.finish()
 
     return vn.dialogueDict
