@@ -15,7 +15,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             "action":"initialize",
             "scriptName": scriptName
         })
-
+    
     def start(self):
         result = {
             "type":"meta",
@@ -47,7 +47,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if not nested:
             self.dialogueDict.append(result)
         return result
-
+    
     def speak(self, character, content, voice:str=None,nested=False):
         name = ""
         if isinstance(character, Character):
@@ -72,7 +72,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if not nested:
             self.dialogueDict.append(result)
         return result
-
+    
     def say_special(self, character, content, nested=False):
         name = ""
         if isinstance(character, Character):
@@ -92,7 +92,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if not nested:
             self.dialogueDict.append(result)
         return result
-
+    
     def background(self,background):
         result = {
             "type":"modify_background",
@@ -100,14 +100,14 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-
+    
     # def clear_background(self):
     #     result = {
     #         "type":"clear_background"
     #     }
     #     self.dialogueDict.append(result)
     #     return result
-
+    
     def voice_effect(self, sound):
         result = {
             "type":"play_sound",
@@ -116,7 +116,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-
+    
     def play_music(self, music):
         result = {
             "type":"play_music",
@@ -125,7 +125,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-
+    
     def stop_music(self):
         result = {
             "type":"play_music",
@@ -139,7 +139,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             # Check if sprite contains any whitespace
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
-
+            
             location = "characters/" + character.id + "/" + character.outfit + "/" + sprite + ".png"
             dyn_location = "characters/" + character.id + "/" + character.dyn_outfit + "/" + sprite + ".png"
             print("Compiling: " + sprite)
@@ -165,7 +165,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             pass
 
     def show_custom(self,character,sprite,wRatio,hRatio,wFrameRatio,hFrameRatio,colPos,rowPos,nested=False):
-        if isinstance(character, Character):
+        if isinstance(character, Character): 
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
             location = "characters/" + character.id + "/" + character.outfit + "/" + sprite + ".png"
@@ -211,10 +211,10 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             pass
 
     def show_left(self,character,sprite,nested=False):
-        if isinstance(character, Character):
+        if isinstance(character, Character): 
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
-
+  
             location = "characters/" + character.id + "/" + character.outfit + "/" + sprite + ".png"
             dyn_location = "characters/" + character.id + "/" + character.dyn_outfit + "/" + sprite + ".png"
             print("Compiling: "+sprite)
@@ -239,10 +239,10 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             pass
 
     def show_right(self,character,sprite,nested=False):
-        if isinstance(character, Character):
+        if isinstance(character, Character): 
             if re.search(r"[A-Z\s.,!?#@$*]", sprite):
                 raise ValueError("Sprite name cannot contain special characters, white space, or uppercase letters.")
-
+  
             location = "characters/" + character.id + "/" + character.outfit + "/" + sprite + ".png"
             dyn_location = "characters/" + character.id + "/" + character.dyn_outfit + "/" + sprite + ".png"
             print("Compiling: "+sprite)
@@ -288,9 +288,9 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             return result
         else:
             pass
-
+    
     def remove(self,character,sprite="",nested=False):
-        if isinstance(character, Character):
+        if isinstance(character, Character): 
             print("Compiling: "+sprite)
             result = {
                 "type":"remove_sprite",
@@ -312,8 +312,8 @@ class VisualNovelModule(): # Module Class, just add more function as you like
             return result
         else:
             pass
-
-
+        
+        
     def choice(self,choice: dict,nested=False):
         print(choice)
         result = {
@@ -324,7 +324,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if(nested==False):
             self.dialogueDict.append(result)
         return result
-
+        
 
     def label(self,labelName:str,nested=False):
         print("Compiling: "+labelName)
@@ -347,7 +347,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if(nested==False):
             self.dialogueDict.append(result)
         return result
-
+    
     def jumpTo(self,labelName:str,nested=False):
         print("Compiling:" + labelName)
         result = {
@@ -375,7 +375,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         print("Compiling: "+varName)
         result = {
             "type":"meta",
-            "action": "create_var",
+            "action": "create_var", 
             "var": varName,
             "init":init
         }
@@ -387,10 +387,10 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         print("Compiling: "+varName)
         result = {
             "type":"modify_variable",
-            "action": "increment_var",
-            "var": varName,
+            "action": "increment_var", 
+            "var": varName, 
             "value": addAmount
-        }
+            }
         self.dialogueDict.append (result)
         return result
 
@@ -398,8 +398,8 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         print("Compiling: "+varName)
         result = {
             "type":"modify_variable",
-            "action": "subtract_var",
-            "var": varName,
+            "action": "subtract_var", 
+            "var": varName, 
             "value": subAmount
         }
         self.dialogueDict.append(result)
@@ -409,8 +409,8 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         print("Compiling: "+varName)
         result = {
             "type":"modify_variable",
-            "action": "modify_var",
-            "var": varName,
+            "action": "modify_var", 
+            "var": varName, 
             "value": value
         }
         self.dialogueDict.append(result)
@@ -423,7 +423,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         print("Compiling: "+varName)
         result = {
             "type":"meta",
-            "action": "create_global",
+            "action": "create_global", 
             "var": varName,
             "init":init
         }
@@ -435,10 +435,10 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         print("Compiling: "+varName)
         result = {
             "type":"modify_global",
-            "action": "increment_var",
-            "var": varName,
+            "action": "increment_var", 
+            "var": varName, 
             "value": addAmount
-        }
+            }
         self.dialogueDict.append (result)
         return result
 
@@ -446,8 +446,8 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         print("Compiling: "+varName)
         result = {
             "type":"modify_global",
-            "action": "subtract_var",
-            "var": varName,
+            "action": "subtract_var", 
+            "var": varName, 
             "value": subAmount
         }
         self.dialogueDict.append(result)
@@ -457,8 +457,8 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         print("Compiling: "+varName)
         result = {
             "type":"modify_global",
-            "action": "modify_var",
-            "var": varName,
+            "action": "modify_var", 
+            "var": varName, 
             "value": value
         }
         self.dialogueDict.append(result)
@@ -472,7 +472,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-
+    
     def night_choice(self,choice: dict,nested=False):
         print(choice)
         result = {
@@ -483,7 +483,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if(nested==False):
             self.dialogueDict.append(result)
         return result
-
+    
     def idle_chats(self,nested = False):
         result = {
             "type":"idle_chat",
@@ -492,7 +492,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if(nested==False):
             self.dialogueDict.append(result)
         return result
-
+    
     def unlock_dialogue(self,events:list,nested = False):
         result = {
             "type":"unlock_dialogues",
@@ -502,7 +502,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         if(nested==False):
             self.dialogueDict.append(result)
         return result
-
+    
     def condNight(self,actions):
         print("Compiling: Night Condition")
         result = {
@@ -514,7 +514,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-
+    
     def condDay(self,actions):
         print("Compiling: Day Condition")
         result = {
@@ -567,7 +567,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
 
-    def condMoreThan(self,varName:str, moreThanValue, actions: list):
+    def condMoreThan(self,varName:str, moreThanValue, actions: list):  
         print("Compiling: "+varName)
         result = {
             "type":"conditional",
@@ -579,7 +579,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-
+    
 
 
 
@@ -625,7 +625,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         self.dialogueDict.append(result)
         return result
 
-    def condMoreThanGlobal(self,varName:str, moreThanValue, actions: list):
+    def condMoreThanGlobal(self,varName:str, moreThanValue, actions: list):  
         print("Compiling: "+varName)
         result = {
             "type":"conditional_global",
@@ -641,7 +641,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
 
 
 
-
+    
     def getGamemode(self,nested = True):
         result = {
             "type":"command",
@@ -649,7 +649,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         if(nested==False):
             self.dialogueDict.append(result)
-
+        
         return result
 
     def customCommand(self,minecraftCommmand:str):
@@ -660,7 +660,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-
+    
     def givePlayer(self,itemId:str,amount:int):
         result = {
             "type":"give_player",
@@ -670,7 +670,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
         }
         self.dialogueDict.append(result)
         return result
-
+    
 
 class SoundModule():
 
@@ -689,7 +689,7 @@ class SoundModule():
         }
         self.soundDict.append(result)
         return result
-
+    
     def music(self, name):
         result= {
             f"music.{name}": {
@@ -703,7 +703,7 @@ class SoundModule():
         }
         self.soundDict.append(result)
         return result
-
+    
     def generate_sound_dict(self,start, end,name,sound):
         sound_dict = {}
         for i in range(start, end + 1):

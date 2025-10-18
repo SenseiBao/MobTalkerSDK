@@ -7,10 +7,10 @@
 
 # Have fun then!
 
-RESOURCE_PACK_NAME = "Yuki Test"
-RESOURCE_PACK_DESCRIPTION = "snow golem test"
-TRIGGER_WORDS = "Yuki"
-VERSION = 19 # The Pack version, 1.20.1 is 18, 1.21 is 19.
+RESOURCE_PACK_NAME = "Andr's Demo"
+RESOURCE_PACK_DESCRIPTION = "Yes"
+TRIGGER_WORDS = "Trigger is Cupa"
+VERSION = 18 # The Pack version, 1.20.1 is 18, 1.21 is 19.
 
 # =======================================
 
