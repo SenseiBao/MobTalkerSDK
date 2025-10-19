@@ -13,7 +13,7 @@ vn = VisualNovelModule()
 c = Cupa 
 a = Andr
 p = "Player" 
-storyName = "cupa" # This will be the name of the Json File
+storyName = "cupa_test" # This will be the name of the Json File
 
 def story():
 
