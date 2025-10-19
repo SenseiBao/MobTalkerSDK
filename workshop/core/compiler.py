@@ -91,7 +91,7 @@ def flattenVN(actions: list[dict]) -> list[dict]:
     actionIndex = 0 # First state in the FSM
     for action in actions:
         action["id"] = actionIndex # Put the state 0 or current number as 'id'
-        if action["type"] == "conditional": # Conditionals are special
+        if action["type"] == "conditional" or action["type"] == "conditional_global": # Conditionals are special
             subactions = []
             # There is no easy way to explain this
             # But basically... We want to...
