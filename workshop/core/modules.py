@@ -655,7 +655,7 @@ class VisualNovelModule(): # Module Class, just add more function as you like
     def customCommand(self,minecraftCommmand:str):
         result = {
             "type":"command",
-            "action":"custom_commmand",
+            "action":"custom_command",
             "command":minecraftCommmand
         }
         self.dialogueDict.append(result)
