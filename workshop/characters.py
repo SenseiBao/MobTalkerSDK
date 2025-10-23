@@ -32,3 +32,9 @@ Andr = Character(
         outfit = "default"
 )
 
+Narrator = Character(
+        id="narrator",
+        name = "",
+        description = "A boygirl???",
+        outfit = "default"
+)
